@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "198382945273",
+    "firebase_url": "https://grabloveproject.firebaseio.com",
+    "project_id": "grabloveproject",
+    "storage_bucket": "grabloveproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198382945273:android:46336cb7623c8201",
+        "android_client_info": {
+          "package_name": "dev.uit.grablove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198382945273-o4vdfhhsb6rrcal7vira25mqitvjfbui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.uit.grablove",
+            "certificate_hash": "1ee6fbb4f6da09c5b6b2ea778cf8b89afe97a191"
+          }
+        },
+        {
+          "client_id": "198382945273-9sgrpv82k2a3ppemqsdqvh9a5r97fchu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW2F96a8ZwQYWLR1g2JoqAOxn2Bj7_xLE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198382945273-9sgrpv82k2a3ppemqsdqvh9a5r97fchu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
