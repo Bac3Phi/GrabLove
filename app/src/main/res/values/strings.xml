@@ -4,5 +4,7 @@
     <string name="birthday">My Birthday is</string>
     <string name="birthday_rule">Your age will be shown publicly</string>
     <string name="next">Next</string>
-
+    <string name="sex">Gender</string>
+    <string name="female">female</string>
+    <string name="male">male</string>
 </resources>

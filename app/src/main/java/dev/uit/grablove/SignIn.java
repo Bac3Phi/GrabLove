@@ -1,6 +1,7 @@
 package dev.uit.grablove;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -69,6 +70,8 @@ public class SignIn extends AppCompatActivity {
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign In Successfully!!!", Toast.LENGTH_SHORT).show();
+                                Intent Birthday = new Intent(SignIn.this,Birthday.class);
+                                startActivity(Birthday);
                             } else {
                                 Toast.makeText(SignIn.this, "Wrong Password!!!", Toast.LENGTH_SHORT).show();
                             }
