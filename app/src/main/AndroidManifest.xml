@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Email" />
-        <activity android:name=".Sex"></activity>
+        <activity android:name=".Sex" />
+        <activity android:name=".Avatar"></activity>
     </application>
 
 </manifest>

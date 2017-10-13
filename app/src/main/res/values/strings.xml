@@ -7,4 +7,6 @@
     <string name="sex">Gender</string>
     <string name="female">female</string>
     <string name="male">male</string>
+    <string name="avatar">My most beautiful \nPicture is</string>
+    <string name="finish">Finish</string>
 </resources>
