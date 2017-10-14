@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context="dev.uit.grablove.SignUp">
+    tools:context="dev.uit.grablove.SignUpActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginLeft="8dp"
@@ -15,8 +15,9 @@
         android:layout_height="wrap_content">
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPhoneNumber"
-            android:hint="Phone Number"
+            android:id="@+id/edtUserNameSignUp"
+            android:hint="Your Username"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
@@ -28,8 +29,9 @@
             app:met_primaryColor="@android:color/white"
             />
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtName"
-            android:hint="Your Name"
+            android:id="@+id/edtPasswordSignUp"
+            android:hint="Password"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
@@ -41,8 +43,9 @@
             app:met_primaryColor="@android:color/white"
             />
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPassword"
-            android:hint="Your Password"
+            android:id="@+id/edtNameSignUp"
+            android:hint="Your Full Name"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
@@ -57,7 +60,7 @@
     </LinearLayout>
 
         <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSignUpSignUp"
         android:text="Sign Up"
         android:textColor="@android:color/white"
         android:layout_marginRight="8dp"
@@ -71,7 +74,7 @@
         app:buttonColor="@color/btnSignUp"
         app:shadowEnabled="true"
         app:shadowHeight="5dp"
-        app:cornerRadius="4dp"
+        app:cornerRadius="20dp"
             />
 
 </RelativeLayout>

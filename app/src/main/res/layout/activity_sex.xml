@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context="dev.uit.grablove.Sex">
+    tools:context="dev.uit.grablove.SexActivity">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/btnBackSex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -54,7 +54,7 @@
         android:layout_marginRight="30dp">
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/btnMale"
+            android:id="@+id/btnMaleSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -73,7 +73,7 @@
 
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/btnNext"
+            android:id="@+id/btnFemaleSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

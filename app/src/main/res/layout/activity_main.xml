@@ -2,66 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:fitsSystemWindows="true"
     tools:context="dev.uit.grablove.MainActivity">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/txtSlogan"
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/slogan"
-        android:textColor="@android:color/white" />
-</LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginBottom="22dp"
-        android:weightSum="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignUp"
-        android:text="Sign Up"
-        android:textColor="@android:color/white"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:shadowColor="@android:color/black"
-        app:buttonColor="@color/btnSignUp"
-        app:shadowEnabled="true"
-        app:shadowHeight="5dp"
-        app:cornerRadius="20dp"
-        />
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/btnSignIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:text="Sign In"
-            android:textColor="@android:color/white"
-            app:buttonColor="@color/btnSignActive"
-            app:cornerRadius="20dp"
-            app:shadowColor="@android:color/black"
-            app:shadowEnabled="true"
-            app:shadowHeight="5dp" />
-    </LinearLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.AppBarLayout>
 
 </RelativeLayout>

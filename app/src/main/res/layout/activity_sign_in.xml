@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context="dev.uit.grablove.SignIn">
+    tools:context="dev.uit.grablove.SignInActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,8 +16,9 @@
         android:layout_height="wrap_content">
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPhoneNumber"
+            android:id="@+id/edtUserNameSignIn"
             android:hint="Phone Number"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
@@ -30,8 +31,9 @@
             />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/edtPasswordSignIn"
             android:hint="Your Password"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
@@ -45,7 +47,7 @@
 
     </LinearLayout>
     <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnSignInSignIn"
         android:text="Sign In"
         android:textColor="@android:color/white"
         android:layout_marginRight="8dp"
@@ -59,6 +61,6 @@
         app:buttonColor="@color/btnSignActive"
         app:shadowEnabled="true"
         app:shadowHeight="5dp"
-        app:cornerRadius="4dp"
+        app:cornerRadius="20dp"
         />
 </RelativeLayout>
