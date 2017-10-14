@@ -1,11 +1,13 @@
-package dev.uit.grablove;
+package dev.uit.grablove.Activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class WelcomeActivity extends Activity {
+import dev.uit.grablove.R;
+
+public class WelcomeActivity extends AppCompatActivity {
     Button btnSignIn,btnSignUp;
     TextView txtSlogan;
 

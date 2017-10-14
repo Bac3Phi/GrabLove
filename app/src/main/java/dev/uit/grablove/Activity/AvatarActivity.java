@@ -1,13 +1,15 @@
-package dev.uit.grablove;
+package dev.uit.grablove.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SexActivity extends AppCompatActivity {
+import dev.uit.grablove.R;
+
+public class AvatarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sex);
+        setContentView(R.layout.activity_avatar);
     }
 }

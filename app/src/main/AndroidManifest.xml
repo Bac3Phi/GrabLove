@@ -11,24 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".Activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".BirthdayActivity">
+        <activity android:name=".Activity.SignInActivity" />
+        <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".Activity.BirthdayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SexActivity" />
-        <activity android:name=".AvatarActivity" />
+        <activity android:name=".Activity.SexActivity" />
+        <activity android:name=".Activity.AvatarActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

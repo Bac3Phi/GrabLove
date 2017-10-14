@@ -1,9 +1,11 @@
-package dev.uit.grablove;
+package dev.uit.grablove.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+
+import dev.uit.grablove.R;
 
 public class SignInActivity extends AppCompatActivity {
     Button btnSignIn;
