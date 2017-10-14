@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.icon_avatar);
-        tabLayout.getTabAt(1).setIcon(R.drawable.icon_avatar);
-        tabLayout.getTabAt(2).setIcon(R.drawable.icon_avatar);
+        tabLayout.getTabAt(0).setIcon(R.drawable.pen_silver);
+        tabLayout.getTabAt(1).setIcon(R.drawable.tele_silver);
+        tabLayout.getTabAt(2).setIcon(R.drawable.chat_silver);
 
 
     }
@@ -116,11 +116,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SETTING";
+                    return null;
                 case 1:
-                    return "SWIPE";
+                    return null;
                 case 2:
-                    return "CHAT";
+                    return null;
             }
             return null;
         }
