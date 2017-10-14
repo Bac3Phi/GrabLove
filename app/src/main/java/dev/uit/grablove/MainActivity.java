@@ -10,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import dev.uit.grablove.Fragment.Tab1SettingFragment;
+import dev.uit.grablove.Fragment.Tab2SwipeFragment;
+import dev.uit.grablove.Fragment.Tab3ChatFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -89,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
         switch (position)
         {
             case 0:
-                Tab1SettingActivity tab1 = new Tab1SettingActivity();
+                Tab1SettingFragment tab1 = new Tab1SettingFragment();
                 return tab1;
             case 1:
-                Tab2SwipeActivity tab2 = new Tab2SwipeActivity();
+                Tab2SwipeFragment tab2 = new Tab2SwipeFragment();
                 return tab2;
             case 2:
-                Tab3ChatActivity tab3 = new Tab3ChatActivity();
+                Tab3ChatFragment tab3 = new Tab3ChatFragment();
                 return tab3;
             default: return  null;
         }

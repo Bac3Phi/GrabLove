@@ -1,10 +1,12 @@
-package dev.uit.grablove;
+package dev.uit.grablove.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import dev.uit.grablove.R;
 
 public class SignUpActivity extends AppCompatActivity {
     MaterialEditText edtPhone,edtName,edtPassword;
