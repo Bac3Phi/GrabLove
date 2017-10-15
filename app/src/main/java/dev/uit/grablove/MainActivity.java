@@ -29,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
+
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
 
@@ -50,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.pen_silver);
         tabLayout.getTabAt(1).setIcon(R.drawable.tele_silver);
         tabLayout.getTabAt(2).setIcon(R.drawable.chat_silver);
-
-
     }
 
 
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         switch (position)
         {
             case 0:
+
                 Tab1SettingFragment tab1 = new Tab1SettingFragment();
                 return tab1;
             case 1:

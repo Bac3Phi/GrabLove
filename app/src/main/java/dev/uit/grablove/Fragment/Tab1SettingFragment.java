@@ -19,5 +19,7 @@ public class Tab1SettingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab1_setting, container, false);
         return rootView;
+
+
     }
 }
