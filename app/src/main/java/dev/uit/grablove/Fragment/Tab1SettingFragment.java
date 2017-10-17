@@ -14,11 +14,13 @@ import dev.uit.grablove.R;
 
 public class Tab1SettingFragment extends Fragment {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_tab1_setting, container, false);
-        return rootView;
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                    Bundle savedInstanceState) {
+                View rootView = inflater.inflate(R.layout.fragment_tab1_setting, container, false);
+  //              RelativeLayout layout =(RelativeLayout) rootView.findViewById(R.id.relativeLayoutTab1);
+//                layout.setBackgroundResource(R.drawable.bg_2);
+                return rootView;
 
 
     }

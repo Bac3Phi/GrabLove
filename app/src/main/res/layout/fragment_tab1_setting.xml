@@ -1,28 +1,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relativeLayoutTab1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_setting720p"
+
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dev.uit.grablove.MainActivity">
+
+
+<LinearLayout
+    android:layout_marginTop="64dp"
+    android:weightSum="2"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/linearLayout4">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleivTab1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/avatar_test"
+        app:civ_border_color="@color/WhiteSmoke"
+        app:civ_border_width="5dp"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:id="@+id/txtNameTab1"
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="柳侑绮"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+</LinearLayout>
+
+
+
     <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3"
-        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout3"
+        android:layout_below="@+id/linearLayout4"
         android:layout_centerHorizontal="true">
 
         <at.markushi.ui.CircleButton
             android:id="@+id/btnSettingTab1"
 
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_alignBottom="@+id/linearLayout2"
             android:layout_alignEnd="@+id/linearLayout2"
             android:layout_alignRight="@+id/linearLayou8t2"
@@ -35,13 +72,11 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-
             android:src="@drawable/line_vertical" />
-
         <at.markushi.ui.CircleButton
             android:id="@+id/btnEditTab1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             app:cb_color="@color/fbutton_color_clouds"
             app:cb_pressedRingWidth="5dp"
             android:layout_alignBottom="@+id/linearLayout2"
@@ -52,4 +87,9 @@
 
     </LinearLayout>
 
+
+
+
+
 </RelativeLayout>
+

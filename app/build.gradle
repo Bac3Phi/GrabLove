@@ -38,6 +38,7 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.github.markushi:circlebutton:1.1'
     compile 'com.android.support:design:25.3.1'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
