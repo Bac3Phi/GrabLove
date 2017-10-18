@@ -57,7 +57,6 @@
 
         <at.markushi.ui.CircleButton
             android:id="@+id/btnSettingTab1"
-
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_alignBottom="@+id/linearLayout2"

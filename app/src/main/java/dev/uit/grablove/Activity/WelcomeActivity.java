@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 
 public class WelcomeActivity extends Activity {
@@ -24,7 +23,7 @@ public class WelcomeActivity extends Activity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent test = new Intent(WelcomeActivity.this,MainActivity.class);
+                Intent test = new Intent(WelcomeActivity.this,AvatarActivity.class);
                 startActivity(test);
             }
         });

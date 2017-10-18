@@ -7,10 +7,6 @@
     android:layout_centerInParent="true"
     android:background="@drawable/background"
     tools:context="dev.uit.grablove.Activity.AvatarActivity">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
         <ImageButton
             android:id="@+id/btnBackAvatar"
             android:layout_width="wrap_content"
@@ -24,41 +20,27 @@
             app:srcCompat="@drawable/icon_back_1"
             android:background="@android:color/transparent"
             />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
         <TextView
 
             android:fontFamily="sans-serif-smallcaps"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="@string/avatar"
             android:textSize="30dp"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/btnBackAvatar"
+            android:layout_centerHorizontal="true" />
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2">
         <ImageView
             android:src="@drawable/icon_avatar"
             android:layout_width="300dp"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
+            android:id="@+id/imageView2" />
 
-    </LinearLayout>
     <at.markushi.ui.CircleButton
         android:id="@+id/btnAddAvatar"
         android:layout_width="80dp"
@@ -66,12 +48,12 @@
         app:cb_color="@color/fbutton_color_clouds"
         app:cb_pressedRingWidth="5dp"
         android:src="@drawable/ic_add_black_50dp"
-        android:layout_marginRight="68dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="63dp"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignRight="@+id/linearLayout2"
-        android:layout_alignEnd="@+id/linearLayout2" />
+        android:layout_marginRight="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="44dp"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btnFinishAvatar"

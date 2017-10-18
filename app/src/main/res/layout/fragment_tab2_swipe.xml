@@ -1,23 +1,86 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_marginTop="64dp"
     tools:context="dev.uit.grablove.MainActivity">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:text="Đây là đâu?"
+
+        <com.lorentzos.flingswipe.SwipeFlingAdapterView
+            android:id="@+id/frame"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="#ffeee9e2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            app:rotation_degrees="15.5"
+            tools:context=".MyActivity" />
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="78dp" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnRefreshTab2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignEnd="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayou8t2"
+            android:layout_gravity="center"
+            android:padding="25dp"
+            android:src="@drawable/icon_refresh_40px"
+            app:cb_color="@color/fbutton_color_clouds"
+            app:cb_pressedRingWidth="5dp" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnDislikeTab2"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignEnd="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayou8t2"
+            android:padding="17dp"
+            android:src="@drawable/icon_delete_52px"
+            app:cb_color="@color/fbutton_color_clouds"
+            app:cb_pressedRingWidth="5dp" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnLikeTab2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignEnd="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayou8t2"
+            android:padding="20dp"
+            android:src="@drawable/icon_heart_48px"
+            app:cb_color="@color/fbutton_color_clouds"
+            app:cb_pressedRingWidth="5dp" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnSuperLikeTab2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignEnd="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayou8t2"
+            android:layout_gravity="center"
+            android:padding="25dp"
+
+            android:src="@drawable/icon_star_filled_52px"
+            app:cb_color="@color/fbutton_color_clouds"
+            app:cb_pressedRingWidth="5dp" />
+
+    </LinearLayout>
 
 </RelativeLayout>
