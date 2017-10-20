@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import at.markushi.ui.CircleButton;
 import dev.uit.grablove.Model.TouristSpot;
 import dev.uit.grablove.Model.TouristSpotCardAdapter;
 import dev.uit.grablove.R;
@@ -33,29 +34,49 @@ public class Tab2SwipeFragment extends Fragment {
     private CardStackView cardStackView;
     private TouristSpotCardAdapter adapter;
 
+    private CircleButton btnRefresh,btnLike,btnDislike,btnSuperLike;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab2_swipe, container, false);
+        actionButton(rootView);
         setup(rootView);
         reload();
         return rootView;
     }
+
+    private void actionButton(View rootView) {
+        btnRefresh = (CircleButton) rootView.findViewById(R.id.btnRefreshTab2);
+        btnDislike= (CircleButton) rootView.findViewById(R.id.btnDislikeTab2);
+        btnLike = (CircleButton) rootView.findViewById(R.id.btnLikeTab2);
+        btnSuperLike = (CircleButton) rootView.findViewById(R.id.btnSuperLikeTab2);
+
+
+        btnDislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeLeft();
+            }
+        });
+        btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               swipeRight();
+            }
+        });
+    }
+
     private TouristSpot createTouristSpot() {
-        return new TouristSpot("Yasaka Shrine", "Kyoto", "https://source.unsplash.com/Xq1ntWruZQI/600x800");
+        return new TouristSpot("Yasaka Shrine", "22", "https://i.imgur.com/qUGY7gL.jpg");
     }
     private List<TouristSpot> createTouristSpots() {
         List<TouristSpot> spots = new ArrayList<>();
-        spots.add(new TouristSpot("Yasaka Shrine", "Kyoto", "https://source.unsplash.com/Xq1ntWruZQI/600x800"));
-        spots.add(new TouristSpot("Fushimi Inari Shrine", "Kyoto", "https://source.unsplash.com/NYyCqdBOKwc/600x800"));
-        spots.add(new TouristSpot("Bamboo Forest", "Kyoto", "https://source.unsplash.com/buF62ewDLcQ/600x800"));
-        spots.add(new TouristSpot("Brooklyn Bridge", "New York", "https://source.unsplash.com/THozNzxEP3g/600x800"));
-        spots.add(new TouristSpot("Empire State Building", "New York", "https://source.unsplash.com/USrZRcRS2Lw/600x800"));
-        spots.add(new TouristSpot("The statue of Liberty", "New York", "https://source.unsplash.com/PeFk7fzxTdk/600x800"));
-        spots.add(new TouristSpot("Louvre Museum", "Paris", "https://source.unsplash.com/LrMWHKqilUw/600x800"));
-        spots.add(new TouristSpot("Eiffel Tower", "Paris", "https://source.unsplash.com/HN-5Z6AmxrM/600x800"));
-        spots.add(new TouristSpot("Big Ben", "London", "https://source.unsplash.com/CdVAUADdqEc/600x800"));
-        spots.add(new TouristSpot("Great Wall of China", "China", "https://source.unsplash.com/AWh9C-QjhE4/600x800"));
+        spots.add(new TouristSpot("Yasaka Shrine", "21", "https://i.imgur.com/GfXdZjo.jpg"));
+        spots.add(new TouristSpot("Fushimi Inari Shrine", "22", "https://i.imgur.com/v1mEgOd.jpg"));
+        spots.add(new TouristSpot("Bamboo Forest", "20", "https://i.imgur.com/dUU2UO6.jpg"));
+        spots.add(new TouristSpot("Brooklyn Bridge", "25", "https://i.imgur.com/2Fa14rb.jpg"));
+        spots.add(new TouristSpot("Sevenbaby", "25", "https://i.imgur.com/mBmnbo2.jpg"));
+        spots.add(new TouristSpot("Xeimei", "21", "https://i.imgur.com/0L6SQ0D.jpg"));
         return spots;
     }
     private TouristSpotCardAdapter createTouristSpotCardAdapter() {
