@@ -8,5 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dev.uit.grablove.MainActivity">
 
+    <include layout="@layout/content_tab3_chat" />
 
 </RelativeLayout>

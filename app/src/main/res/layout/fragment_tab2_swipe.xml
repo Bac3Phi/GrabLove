@@ -6,95 +6,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yuyakaido.android.cardstackview.CardStackView
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="100dp"
-        android:id="@+id/activity_main_card_stack_view"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:clipToPadding="false"
-        app:visibleCount="3"
-        app:swipeThreshold="0.75"
-        app:translationDiff="12"
-        app:scaleDiff="0.02"
-        app:stackFrom="top"
-        app:elevationEnabled="false"
-        app:swipeEnabled="true"
-        app:swipeDirection="freedom_no_bottom"
-        app:leftOverlay="@layout/overlay_left"
-        app:rightOverlay="@layout/overlay_right"
-        app:topOverlay="@layout/overlay_top" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
 
-    <ProgressBar
-        android:id="@+id/activity_main_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnRefreshTab2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignBottom="@+id/linearLayout2"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignRight="@+id/linearLayou8t2"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:src="@drawable/icon_refresh"
+                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_pressedRingWidth="5dp" />
 
-        <at.markushi.ui.CircleButton
-            android:id="@+id/btnRefreshTab2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignBottom="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayou8t2"
-            android:layout_gravity="center"
-            android:padding="20dp"
-            android:src="@drawable/icon_refresh"
-            app:cb_color="@color/fbutton_color_clouds"
-            app:cb_pressedRingWidth="5dp" />
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnDislikeTab2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignBottom="@+id/linearLayout2"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignRight="@+id/linearLayou8t2"
+                android:padding="22dp"
+                android:src="@drawable/icon_delete_52px"
+                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_pressedRingWidth="5dp" />
 
-        <at.markushi.ui.CircleButton
-            android:id="@+id/btnDislikeTab2"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignBottom="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayou8t2"
-            android:padding="22dp"
-            android:src="@drawable/icon_delete_52px"
-            app:cb_color="@color/fbutton_color_clouds"
-            app:cb_pressedRingWidth="5dp" />
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnLikeTab2"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_alignBottom="@+id/linearLayout2"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignRight="@+id/linearLayou8t2"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:src="@drawable/icon_heart_48px"
+                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_pressedRingWidth="5dp" />
 
-        <at.markushi.ui.CircleButton
-            android:id="@+id/btnLikeTab2"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_alignBottom="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayou8t2"
-            android:layout_gravity="center"
-            android:padding="20dp"
-            android:src="@drawable/icon_heart_48px"
-            app:cb_color="@color/fbutton_color_clouds"
-            app:cb_pressedRingWidth="5dp" />
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnSuperLikeTab2"
+                android:layout_width="79dp"
+                android:layout_height="79dp"
+                android:layout_alignBottom="@+id/linearLayout2"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignRight="@+id/linearLayou8t2"
+                android:layout_gravity="center"
+                android:padding="25dp"
 
-        <at.markushi.ui.CircleButton
-            android:id="@+id/btnSuperLikeTab2"
-            android:layout_width="79dp"
-            android:layout_height="79dp"
-            android:layout_alignBottom="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayou8t2"
-            android:layout_gravity="center"
-            android:padding="25dp"
+                android:src="@drawable/icon_star_filled_52px"
+                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_pressedRingWidth="5dp" />
 
-            android:src="@drawable/icon_star_filled_52px"
-            app:cb_color="@color/fbutton_color_clouds"
-            app:cb_pressedRingWidth="5dp" />
+        </LinearLayout>
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/activity_main_card_stack_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="0dp"
+            android:paddingBottom="95dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:clipToPadding="false"
+            app:visibleCount="3"
+            app:swipeThreshold="0.75"
+            app:translationDiff="12"
+            app:scaleDiff="0.02"
+            app:stackFrom="top"
+            app:elevationEnabled="false"
+            app:swipeEnabled="true"
+            app:swipeDirection="freedom_no_bottom"
+            app:leftOverlay="@layout/overlay_left"
+            app:rightOverlay="@layout/overlay_right"
+            app:topOverlay="@layout/overlay_top" />
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/activity_main_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 </RelativeLayout>
