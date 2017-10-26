@@ -6,6 +6,7 @@ package dev.uit.grablove.Model;
 
 public class User {
     private String UserKey;
+    private String Avatar;
     private String Description;
     private String DoB;
     private String Location;
@@ -19,8 +20,9 @@ public class User {
 
     }
 
-    public User(String userKey, String description, String doB, String location, String name, String password, String phone, String sex, String userName) {
+    public User(String userKey, String avatar, String description, String doB, String location, String name, String password, String phone, String sex, String userName) {
         UserKey = userKey;
+        Avatar = avatar;
         Description = description;
         DoB = doB;
         Location = location;
@@ -37,6 +39,14 @@ public class User {
 
     public void setUserKey(String userKey) {
         UserKey = userKey;
+    }
+
+    public String getAvatar() {
+        return Avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
     }
 
     public String getDescription() {
