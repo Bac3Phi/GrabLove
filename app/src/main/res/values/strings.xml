@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GrabLove</string>
+    <string name="app_name">Grab Love</string>
     <string name="slogan">"I look at you and see the rest of my life in front of my eyes."</string>
     <string name="birthday">My Birthday is</string>
     <string name="birthday_rule">Your age will be shown publicly</string>
@@ -14,4 +14,5 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="age_rule">GrabLove uses these preferences to suggest matches. Some match suggestions may not fall within your desired parameters.</string>
     <string name="showup_rule">You won\'t show up in the card stack but can still message your existing matches.</string>
+    <string name="version">Grablove ver 1.0.26</string>
 </resources>
