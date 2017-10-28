@@ -63,7 +63,7 @@
             android:layout_alignEnd="@+id/linearLayout2"
             android:layout_alignRight="@+id/linearLayou8t2"
             android:padding="25dp"
-            android:src="@drawable/icon_settings_96px"
+            android:src="@mipmap/icon_settings_96px"
             app:cb_color="@color/fbutton_color_clouds"
             app:cb_pressedRingWidth="5dp" />
 
@@ -81,7 +81,7 @@
             android:layout_alignBottom="@+id/linearLayout2"
             android:layout_alignEnd="@+id/linearLayout2"
             android:layout_alignRight="@+id/linearLayou8t2"
-            android:src="@drawable/icon_pencil_104px"
+            android:src="@mipmap/icon_pencil_104px"
             android:padding="25dp"/>
 
     </LinearLayout>

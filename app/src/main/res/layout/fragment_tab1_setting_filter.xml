@@ -21,57 +21,63 @@
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
+        android:layout_marginTop="64dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="64dp">
+        android:layout_alignParentLeft="true">
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:paddingRight="12dp">
+
             <LinearLayout
 
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:weightSum="3"
-                android:background="@drawable/background_item_setting"
-                android:paddingLeft="20dp"
-                android:paddingTop ="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_item_setting"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:weightSum="3">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Show Me"
-                    android:textStyle="bold"
-                    android:textColor="@color/BlueCustom"/>
+                    android:textColor="@color/BlueCustom"
+                    android:textStyle="bold" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switchTab1Male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="Male"
                     tools:checked="true" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switch2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="Female" />
             </LinearLayout>
+
             <LinearLayout
 
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:background="@drawable/background_item_setting"
-                android:paddingLeft="20dp"
-                android:paddingTop ="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_item_setting"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -83,19 +89,22 @@
                         android:text="Maximum Distance"
                         android:textColor="@color/BlueCustom"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
                         android:layout_alignParentTop="true"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
                         android:layout_toLeftOf="@+id/textView"
                         android:layout_toStartOf="@+id/textView"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginEnd="2dp" />
+                        android:text="1"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -105,8 +114,7 @@
                         android:layout_marginRight="7dp"
                         android:text="km."
                         android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
-                        android:id="@+id/textView" />
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -114,8 +122,9 @@
                     android:id="@+id/seekDistance"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:max="200"/>
+                    android:max="200" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,12 +199,14 @@
 
 
             </LinearLayout>
+
             <TextView
-                android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:text="@string/age_rule"/>
+                android:layout_marginLeft="12dp"
+                android:text="@string/age_rule"
+                android:textSize="11dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,6 +215,7 @@
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp">
+
                 <Switch
 
                     android:id="@+id/switchTab1ShowMe"
@@ -213,92 +225,103 @@
                     android:text="Show me on GrabLove"
                     tools:checked="true" />
             </RelativeLayout>
+
             <TextView
-                android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:text="@string/showup_rule"/>
+                android:layout_marginLeft="12dp"
+                android:text="@string/showup_rule"
+                android:textSize="11dp" />
+
             <LinearLayout
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:weightSum="3"
-                android:background="@drawable/background_item_setting"
-                android:paddingLeft="20dp"
-                android:paddingTop ="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_item_setting"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:weightSum="3">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notifications"
-                    android:textStyle="bold"
-                    android:textColor="@color/BlueCustom"/>
+                    android:textColor="@color/BlueCustom"
+                    android:textStyle="bold" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switchTab1NewMatches"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="New Matches"
                     tools:checked="true" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switchTab1Messages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="Messages"
                     tools:checked="true" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switchTab1MessagesLikes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="Messages Likes"
                     tools:checked="true" />
+
                 <Switch
-                    android:layout_marginRight="12dp"
                     android:id="@+id/switchTab1SuperLikes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="Super Likes"
                     tools:checked="true" />
-                
-            </LinearLayout>
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:weightSum="3"
-            android:background="@drawable/background_item_setting"
-            android:paddingLeft="20dp"
-            android:paddingTop ="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact Us"
-                android:textStyle="bold"
-                android:textColor="@color/BlueCustom"/>
-            <TextView
 
-                android:layout_gravity="center"
-                android:text="Help &amp; Support"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_item_setting"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Us"
+                    android:textColor="@color/BlueCustom"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:text="Help &amp; Support"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/background_item_setting"
                 android:paddingLeft="20dp"
-                android:paddingTop ="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:text="Log Out"
                 android:textColor="@color/BlueCustom"
                 android:textSize="17dp"
-                android:text="Log Out"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
     </ScrollView>

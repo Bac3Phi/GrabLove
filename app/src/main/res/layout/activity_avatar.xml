@@ -17,7 +17,7 @@
             android:maxHeight="30dp"
             android:maxWidth="30dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_back_1"
+            app:srcCompat="@mipmap/icon_back_1"
             android:background="@android:color/transparent"
             />
         <TextView
@@ -34,7 +34,7 @@
             android:layout_centerHorizontal="true" />
 
         <ImageView
-            android:src="@drawable/icon_avatar"
+            android:src="@mipmap/icon_avatar"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:scaleType="fitCenter"
