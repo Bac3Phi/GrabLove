@@ -12,4 +12,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="age_rule">GrabLove uses these preferences to suggest matches. Some match suggestions may not fall within your desired parameters.</string>
+    <string name="showup_rule">You won\'t show up in the card stack but can still message your existing matches.</string>
 </resources>

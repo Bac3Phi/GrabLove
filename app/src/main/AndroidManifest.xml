@@ -35,7 +35,8 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Fragment.fragment_tab3_chat_communicate"></activity>
+        <activity android:name=".Fragment.fragment_tab3_chat_communicate" />
+        <activity android:name=".Fragment.fragment_tab1_setting_filter"></activity>
     </application>
 
 </manifest>
