@@ -22,13 +22,7 @@
         </activity>
         <activity android:name=".Activity.SignInActivity" />
         <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".Activity.BirthdayActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.BirthdayActivity" />
         <activity android:name=".Activity.SexActivity" />
         <activity android:name=".Activity.AvatarActivity" />
         <activity
@@ -36,7 +30,8 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity android:name=".Fragment.fragment_tab3_chat_communicate" />
-        <activity android:name=".Fragment.fragment_tab1_setting_filter"></activity>
+        <activity android:name=".Fragment.fragment_tab1_setting_filter" />
+        <activity android:name=".Fragment.fragment_tab1_setting_profile"></activity>
     </application>
 
 </manifest>

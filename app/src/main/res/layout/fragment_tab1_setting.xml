@@ -15,7 +15,7 @@
 
 
 <LinearLayout
-    android:layout_marginTop="64dp"
+    android:layout_marginTop="34dp"
     android:weightSum="2"
     android:orientation="vertical"
     android:layout_width="wrap_content"
@@ -27,6 +27,7 @@
         android:id="@+id/circleivTab1"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/avatar_test"
         app:civ_border_color="@color/WhiteSmoke"
         app:civ_border_width="5dp"
@@ -37,7 +38,8 @@
         android:fontFamily="sans-serif-smallcaps"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="柳侑绮"
+        android:layout_marginBottom="20dp"
+        android:text="Seven Baby"
         android:textSize="20dp"
         android:gravity="center"
         android:textColor="@android:color/black" />
@@ -56,7 +58,7 @@
         android:layout_centerHorizontal="true">
 
         <at.markushi.ui.CircleButton
-            android:id="@+id/btnSettingTab1"
+            android:id="@+id/btnFilterSettingTab1"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_alignBottom="@+id/linearLayout2"
@@ -73,7 +75,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/line_vertical" />
         <at.markushi.ui.CircleButton
-            android:id="@+id/btnEditTab1"
+            android:id="@+id/btnProfileSettingTab1"
             android:layout_width="75dp"
             android:layout_height="75dp"
             app:cb_color="@color/fbutton_color_clouds"

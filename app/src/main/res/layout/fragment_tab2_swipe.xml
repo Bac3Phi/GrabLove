@@ -72,26 +72,27 @@
                 app:cb_pressedRingWidth="5dp" />
 
         </LinearLayout>
+
         <com.yuyakaido.android.cardstackview.CardStackView
             android:id="@+id/activity_main_card_stack_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="0dp"
+            android:clipToPadding="false"
             android:paddingBottom="95dp"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
-            android:clipToPadding="false"
-            app:visibleCount="3"
-            app:swipeThreshold="0.75"
-            app:translationDiff="12"
-            app:scaleDiff="0.02"
-            app:stackFrom="top"
+            android:paddingTop="0dp"
             app:elevationEnabled="false"
-            app:swipeEnabled="true"
-            app:swipeDirection="freedom_no_bottom"
             app:leftOverlay="@layout/overlay_left"
             app:rightOverlay="@layout/overlay_right"
-            app:topOverlay="@layout/overlay_top" />
+            app:scaleDiff="0.02"
+            app:stackFrom="top"
+            app:swipeDirection="freedom_no_bottom"
+            app:swipeEnabled="true"
+            app:swipeThreshold="0.75"
+            app:topOverlay="@layout/overlay_top"
+            app:translationDiff="12"
+            app:visibleCount="3" />
 
         <ProgressBar
             android:id="@+id/activity_main_progress_bar"

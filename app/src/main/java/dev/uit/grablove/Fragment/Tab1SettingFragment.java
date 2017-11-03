@@ -23,11 +23,19 @@ public class Tab1SettingFragment extends Fragment {
   //              RelativeLayout layout =(RelativeLayout) rootView.findViewById(R.id.relativeLayoutTab1);
 //                layout.setBackgroundResource(R.drawable.bg_2);
 
-                CircleButton btnSettingFilter = (CircleButton) rootView.findViewById(R.id.btnSettingTab1);
+                CircleButton btnSettingFilter = (CircleButton) rootView.findViewById(R.id.btnFilterSettingTab1);
                 btnSettingFilter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent test = new Intent(Tab1SettingFragment.this.getActivity(),fragment_tab1_setting_filter.class);
+                        startActivity(test);
+                    }
+                });
+                CircleButton btnSettingProfile = (CircleButton) rootView.findViewById(R.id.btnProfileSettingTab1);
+                btnSettingProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent test = new Intent(Tab1SettingFragment.this.getActivity(),fragment_tab1_setting_profile.class);
                         startActivity(test);
                     }
                 });

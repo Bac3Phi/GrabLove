@@ -1,10 +1,12 @@
 package dev.uit.grablove.View;
+
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
+
 import java.lang.reflect.Field;
 
 public class CustomViewPager extends ViewPager {
@@ -28,7 +30,12 @@ public class CustomViewPager extends ViewPager {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // Never allow swiping to switch between pages
-        return false;
+        if (event.getAction() == MotionEvent.ACTION_MOVE && getParent() != null)
+        {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+
+        return super.onTouchEvent(event);
     }
 
     //down one is added for smooth scrolling
