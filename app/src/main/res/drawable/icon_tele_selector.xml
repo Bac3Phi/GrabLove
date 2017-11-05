@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/icon_tele_blue2" android:state_selected="true"></item>
-    <item android:drawable="@drawable/icon_tele_blue2"
+    <item android:drawable="@drawable/icon_tele_blue" android:state_selected="true"></item>
+    <item android:drawable="@drawable/icon_tele_blue"
         android:state_pressed="true" />
-    <item android:drawable="@drawable/icon_tele_silver1" />
+    <item android:drawable="@drawable/icon_tele_silver" />
 </selector>
