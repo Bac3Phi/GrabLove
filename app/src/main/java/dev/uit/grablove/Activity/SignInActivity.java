@@ -1,83 +1,87 @@
 package dev.uit.grablove.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.rengwuxian.materialedittext.MaterialEditText;
+
+import dev.uit.grablove.MainActivity;
+import dev.uit.grablove.Model.User;
 import dev.uit.grablove.R;
 
 public class SignInActivity extends AppCompatActivity {
-    Button btnSignIn;
-    EditText edtPhone,edtPassword;
+    private MaterialEditText etUserName;
+    private MaterialEditText etPassword;
+
+    private String strUserName;
+    private String strPassword;
+
+    private Button btnSignIn;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-/*
-        edtPhone= (MaterialEditText)findViewById(R.id.edtPhoneNumber);
-        edtPassword = (MaterialEditText)findViewById(R.id.edtPassword);
 
-        btnSignIn= (Button)findViewById(R.id.btnSignIn);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/UVFLHLST.ttf");
-        edtPhone.setTypeface(face);
-        edtPassword.setTypeface(face);
-        //Init FireBase Database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+        map();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
-                //region *Check null or empty
-                if (edtPhone.getText().toString() == null || edtPhone.getText().toString().length() ==0)
-                {
-                    Toast.makeText(SignInActivity.this, "Please insert your Phone Number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (edtPassword.getText().toString() == null || edtPassword.getText().toString().length() ==0)
-                {
-                    Toast.makeText(SignInActivity.this, "Please insert your Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //endregion
-                final ProgressDialog mDialog = new ProgressDialog(SignInActivity.this);
-                mDialog.setMessage("Please waiting...");
-                mDialog.show();
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-
-                        if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
-                            //Get user info
-                            mDialog.dismiss();
-                            User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                            if (user.getPassword().equals(edtPassword.getText().toString())) {
-                                Toast.makeText(SignInActivity.this, "Sign In Successfully!!!", Toast.LENGTH_SHORT).show();
-                                Intent Birthday = new Intent(SignInActivity.this,BirthdayActivity.class);
-                                startActivity(Birthday);
-                            } else {
-                                Toast.makeText(SignInActivity.this, "Wrong Password!!!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else
-                        {
-                            mDialog.dismiss();
-                            Toast.makeText(SignInActivity.this, "User not Exist", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                SignIn();
             }
         });
-        */
+
+    }
+
+    private void SignIn() {
+        strUserName = etUserName.getText().toString();
+        strPassword = etPassword.getText().toString();
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .whereEqualTo("username", strUserName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (task.getResult().isEmpty()) {
+                                Toast.makeText(getApplicationContext(), "UserName khong ton tai!!", Toast.LENGTH_LONG).show();
+                            } else {
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    String password = document.getString("password");
+                                    if (strPassword.equals(password)){
+                                        Intent main = new Intent(SignInActivity.this,MainActivity.class);
+                                        startActivity(main);
+                                    }
+                                    else {
+                                        Toast.makeText(getApplicationContext(), "Password khong dung!!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void map() {
+        etUserName = (MaterialEditText) findViewById(R.id.edtUserNameSignIn);
+        etPassword = (MaterialEditText) findViewById(R.id.edtPasswordSignIn);
+
+        btnSignIn = (Button) findViewById(R.id.btnSignInSignIn);
     }
 }

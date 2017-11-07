@@ -17,13 +17,13 @@
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtUserNameSignIn"
-            android:hint="Phone Number"
+            android:hint="UserName"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
             android:textSize="34sp"
-            android:inputType="phone"
+            android:inputType="text"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="11"

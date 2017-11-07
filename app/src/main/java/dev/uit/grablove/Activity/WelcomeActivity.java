@@ -13,7 +13,7 @@ import android.widget.TextView;
 import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements View.OnClickListener {
     Button btnSignIn,btnSignUp;
     TextView txtSlogan;
     Animation downtoup,uptodown;
@@ -41,12 +41,14 @@ public class WelcomeActivity extends Activity {
                 startActivity(test);
             }
         });
-/*
-        btnSignIn = (Button) findViewById(R.id.btnSignIn);
-        btnSignUp = (Button)findViewById(R.id.btnSignUp);
-       //Button btnTest  = (Button)findViewById(R.id.button2);
 
-        txtSlogan = (TextView) findViewById(R.id.txtSlogan);
+        btnSignIn = (Button) findViewById(R.id.btnSignInWelcome);
+        btnSignUp = (Button)findViewById(R.id.btnSignUpWelcome);
+
+        btnSignUp.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+
+/*        txtSlogan = (TextView) findViewById(R.id.txtSlogan);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/UVFLHLST.ttf");
         txtSlogan.setTypeface(face);
 
@@ -73,7 +75,21 @@ public class WelcomeActivity extends Activity {
                 Intent signUp = new Intent(WelcomeActivity.this,SignUpActivity.class);
                 startActivity(signUp);
             }
-        });
-*/
+        });*/
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnSignUpWelcome:
+                Intent signUp = new Intent(WelcomeActivity.this,SignUpActivity.class);
+                startActivity(signUp);
+                break;
+            case R.id.btnSignInWelcome:
+                Intent signIn = new Intent(WelcomeActivity.this,SignInActivity.class);
+                startActivity(signIn);
+                break;
+        }
     }
 }

@@ -1,21 +1,29 @@
 package dev.uit.grablove.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import dev.uit.grablove.Activity.SignInActivity;
+import dev.uit.grablove.Activity.WelcomeActivity;
+import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 import io.apptik.widget.MultiSlider;
 
 public class fragment_tab1_setting_filter extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-    SeekBar seekDistance;
-    TextView txtDistance;
-    MultiSlider rangeAge;
-    TextView txtMinAge,txtMaxAge;
-    Toolbar toolbar;
+    private SeekBar seekDistance;
+    private TextView txtDistance;
+    private MultiSlider rangeAge;
+    private TextView txtMinAge,txtMaxAge;
+    private Toolbar toolbar;
+
+    private Button btnLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,15 @@ public class fragment_tab1_setting_filter extends AppCompatActivity implements S
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        btnLogOut = (Button) findViewById(R.id.btnLogOut);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcome = new Intent(getApplicationContext(),WelcomeActivity.class);
+                startActivity(welcome);
+            }
+        });
 
 
     }
