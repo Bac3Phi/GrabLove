@@ -51,10 +51,16 @@ public class Tab2SwipeFragment extends Fragment {
         btnLike = (CircleButton) rootView.findViewById(R.id.btnLikeTab2);
         btnSuperLike = (CircleButton) rootView.findViewById(R.id.btnSuperLikeTab2);
 
-
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reload();
+            }
+        });
         btnDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 swipeLeft();
             }
         });
@@ -203,11 +209,11 @@ public class Tab2SwipeFragment extends Fragment {
         ValueAnimator translateX = ObjectAnimator.ofPropertyValuesHolder(
                 target, PropertyValuesHolder.ofFloat("translationX", 0f, -2000f));
         ValueAnimator translateY = ObjectAnimator.ofPropertyValuesHolder(
-                target, PropertyValuesHolder.ofFloat("translationY", 0f, 500f));
-        translateX.setStartDelay(100);
-        translateY.setStartDelay(100);
-        translateX.setDuration(500);
-        translateY.setDuration(500);
+                target, PropertyValuesHolder.ofFloat("translationY", 0f, 200f));
+        translateX.setStartDelay(300);
+        translateY.setStartDelay(300);
+        translateX.setDuration(200);
+        translateY.setDuration(200);
         AnimatorSet set = new AnimatorSet();
         set.playTogether(rotation, translateX, translateY);
 
@@ -228,11 +234,11 @@ public class Tab2SwipeFragment extends Fragment {
         ValueAnimator translateX = ObjectAnimator.ofPropertyValuesHolder(
                 target, PropertyValuesHolder.ofFloat("translationX", 0f, 2000f));
         ValueAnimator translateY = ObjectAnimator.ofPropertyValuesHolder(
-                target, PropertyValuesHolder.ofFloat("translationY", 0f, 500f));
-        translateX.setStartDelay(100);
-        translateY.setStartDelay(100);
-        translateX.setDuration(500);
-        translateY.setDuration(500);
+                target, PropertyValuesHolder.ofFloat("translationY", 0f, 200f));
+        translateX.setStartDelay(300);
+        translateY.setStartDelay(300);
+        translateX.setDuration(200);
+        translateY.setDuration(200);
         AnimatorSet set = new AnimatorSet();
         set.playTogether(rotation, translateX, translateY);
 
