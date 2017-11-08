@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GrabLove.iml" filepath="$PROJECT_DIR$/GrabLove.iml" />
       <module fileurl="file://D:\android\GrabloveProject\GrabLove.iml" filepath="D:\android\GrabloveProject\GrabLove.iml" />
       <module fileurl="file://D:\android\GrabloveProject\GrabLove2.iml" filepath="D:\android\GrabloveProject\GrabLove2.iml" />
       <module fileurl="file://F:\UIT\GIT\GrabLove\GrabLove2.iml" filepath="F:\UIT\GIT\GrabLove\GrabLove2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GrabloveProject.iml" filepath="$PROJECT_DIR$/GrabloveProject.iml" />
       <module fileurl="file://C:\Users\Administrator\AndroidStudioProjects\GrabLove2\GrabloveProject.iml" filepath="C:\Users\Administrator\AndroidStudioProjects\GrabLove2\GrabloveProject.iml" />
+      <module fileurl="file://F:\UIT\GIT\GrabLove\GrabloveProject.iml" filepath="F:\UIT\GIT\GrabLove\GrabloveProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\UIT\GIT\GrabLove\app\app.iml" filepath="F:\UIT\GIT\GrabLove\app\app.iml" />
     </modules>
   </component>
 </project>
