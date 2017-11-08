@@ -21,54 +21,54 @@
 
             <at.markushi.ui.CircleButton
                 android:id="@+id/btnRefreshTab2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignBottom="@+id/linearLayout2"
                 android:layout_alignEnd="@+id/linearLayout2"
                 android:layout_alignRight="@+id/linearLayou8t2"
                 android:layout_gravity="center"
-                android:padding="20dp"
+                android:padding="17dp"
                 android:src="@mipmap/icon_refresh"
                 app:cb_color="@color/fbutton_color_clouds"
                 app:cb_pressedRingWidth="5dp" />
 
             <at.markushi.ui.CircleButton
                 android:id="@+id/btnDislikeTab2"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
                 android:layout_alignBottom="@+id/linearLayout2"
                 android:layout_alignEnd="@+id/linearLayout2"
                 android:layout_alignRight="@+id/linearLayou8t2"
-                android:padding="22dp"
+                android:padding="19dp"
                 android:src="@mipmap/icon_delete_52px"
-                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_color="@color/WhiteSmoke"
                 app:cb_pressedRingWidth="5dp" />
 
             <at.markushi.ui.CircleButton
                 android:id="@+id/btnLikeTab2"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignBottom="@+id/linearLayout2"
                 android:layout_alignEnd="@+id/linearLayout2"
                 android:layout_alignRight="@+id/linearLayou8t2"
                 android:layout_gravity="center"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:src="@mipmap/icon_heart_48px"
-                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_color="@color/WhiteSmoke"
                 app:cb_pressedRingWidth="5dp" />
 
             <at.markushi.ui.CircleButton
                 android:id="@+id/btnSuperLikeTab2"
-                android:layout_width="79dp"
-                android:layout_height="79dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignBottom="@+id/linearLayout2"
                 android:layout_alignEnd="@+id/linearLayout2"
                 android:layout_alignRight="@+id/linearLayou8t2"
                 android:layout_gravity="center"
-                android:padding="25dp"
-
+                android:padding="19dp"
                 android:src="@mipmap/icon_star_filled_52px"
-                app:cb_color="@color/fbutton_color_clouds"
+                app:cb_color="@color/WhiteSmoke"
                 app:cb_pressedRingWidth="5dp" />
 
         </LinearLayout>

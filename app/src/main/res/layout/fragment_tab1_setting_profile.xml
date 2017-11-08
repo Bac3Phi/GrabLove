@@ -38,6 +38,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imgAvatarSettingProfile"
                     android:layout_width="250dp"
                     android:layout_height="250dp"
                     android:layout_alignParentTop="true"
@@ -45,7 +46,7 @@
                     android:src="@drawable/avatar_test" />
 
                 <at.markushi.ui.CircleButton
-                    android:id="@+id/btnLikeTab2"
+                    android:id="@+id/btnAddSettingProfile"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_alignParentBottom="true"
@@ -74,7 +75,8 @@
                     android:paddingLeft="12dp"
                     android:layout_gravity="center"
                     android:textColor="@android:color/darker_gray"
-                    android:text="Please tell me about yourself"
+                    android:focusable="false"
+                    android:hint="Please tell me about yourself"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"/>
@@ -94,7 +96,8 @@
                 <EditText
                     android:paddingLeft="12dp"
                     android:textColor="@android:color/darker_gray"
-                    android:text="Change Your Name"
+                    android:focusable="false"
+                    android:hint="Change Your Name"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,7 +119,8 @@
                 <EditText
                     android:paddingLeft="12dp"
                     android:textColor="@android:color/darker_gray"
-                    android:text="Change Your Birthday"
+                    android:focusable="false"
+                    android:hint="Change Your Birthday"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
