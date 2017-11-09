@@ -1,6 +1,8 @@
 package dev.uit.grablove.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import dev.uit.grablove.Constants;
 import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.Model.User;
 import dev.uit.grablove.R;
@@ -29,12 +35,18 @@ public class SignInActivity extends AppCompatActivity {
 
     private Button btnSignIn;
 
-    FirebaseFirestore db;
+    private FirebaseFirestore db;
+
+    private SharedPreferences pre;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        pre=getSharedPreferences (Constants.REF_NAME,MODE_PRIVATE);
 
         map();
 
@@ -48,12 +60,17 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void SignIn() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Login...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         strUserName = etUserName.getText().toString();
         strPassword = etPassword.getText().toString();
 
         db = FirebaseFirestore.getInstance();
         db.collection("Users")
-                .whereEqualTo("username", strUserName)
+                .whereEqualTo(Constants.DB_USER_NAME, strUserName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -63,10 +80,18 @@ public class SignInActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "UserName khong ton tai!!", Toast.LENGTH_LONG).show();
                             } else {
                                 for (DocumentSnapshot document : task.getResult()) {
-                                    String password = document.getString("password");
+                                    String password = document.getString(Constants.DB_USER_PASSWORD);
                                     if (strPassword.equals(password)){
-                                        Intent main = new Intent(SignInActivity.this,MainActivity.class);
-                                        startActivity(main);
+                                        progressDialog.dismiss();
+                                        if (document.getBoolean(Constants.DB_USER_IS_NEW)){
+                                            Intent main = new Intent(SignInActivity.this, SexActivity.class);
+                                            startActivity(main);
+                                        }
+                                        else {
+                                            saveUser(document);
+                                            Intent main = new Intent(SignInActivity.this, MainActivity.class);
+                                            startActivity(main);
+                                        }
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Password khong dung!!", Toast.LENGTH_LONG).show();
@@ -76,6 +101,17 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void saveUser(DocumentSnapshot documentSnapshot) {
+        SharedPreferences.Editor edit= pre.edit();
+        edit.putString(Constants.USER_KEY, documentSnapshot.getId());
+        edit.putString(Constants.USER_NAME, documentSnapshot.getString(Constants.DB_USER_FULL_NAME));
+        edit.putString(Constants.USER_SEX, documentSnapshot.getString(Constants.DB_USER_SEX));
+        edit.putString(Constants.USER_DOB, documentSnapshot.getString(Constants.DB_USER_DOB));
+        edit.putString(Constants.USER_AVATAR, documentSnapshot.getString(Constants.DB_USER_AVATAR));
+        edit.putBoolean(Constants.IS_LOG_IN, true);
+        edit.commit();
     }
 
     private void map() {

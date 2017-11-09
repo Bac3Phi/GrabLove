@@ -37,7 +37,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent test = new Intent(WelcomeActivity.this,MainActivity.class);
+                Intent test = new Intent(WelcomeActivity.this,SexActivity.class);
                 startActivity(test);
             }
         });

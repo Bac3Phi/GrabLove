@@ -1,6 +1,8 @@
 package dev.uit.grablove.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.HashMap;
 import java.util.Map;
 
+import dev.uit.grablove.Constants;
 import dev.uit.grablove.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -38,6 +41,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +53,14 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkIsEmpty();
                 retriveData();
             }
         });
 
+    }
+
+    private void checkIsEmpty() {
     }
 
     private void map() {
@@ -63,6 +72,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void retriveData() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("SignUp...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         strUsername = etUserName.getText().toString();
         strPassword = etPassword.getText().toString();
         strFullName = etFullName.getText().toString();
@@ -73,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void checkUserName(String strUserName) {
         db = FirebaseFirestore.getInstance();
         db.collection("Users")
-                .whereEqualTo("username", strUserName)
+                .whereEqualTo(Constants.DB_USER_NAME, strUserName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -91,19 +105,20 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void addDataToFirestore() {
         Map<String, Object> user = new HashMap<>();
-        user.put("username", strUsername);
-        user.put("password", strPassword);
-        user.put("fullname", strFullName);
-        user.put("isnew", true);
+        user.put(Constants.DB_USER_NAME, strUsername);
+        user.put(Constants.DB_USER_PASSWORD, strPassword);
+        user.put(Constants.DB_USER_FULL_NAME, strFullName);
+        user.put(Constants.DB_USER_IS_NEW, true);
 
         db.collection("Users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        progressDialog.dismiss();
                         Log.d("wdadwd", "DocumentSnapshot added with ID: " + documentReference.getId());
                         Toast.makeText(getApplicationContext(), "SignUp thanh cong", Toast.LENGTH_LONG).show();
-                        Intent Avatar = new Intent(SignUpActivity.this,AvatarActivity.class);
+                        Intent Avatar = new Intent(SignUpActivity.this, SexActivity.class);
                         startActivity(Avatar);
                     }
                 })
@@ -112,6 +127,18 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         Log.w("dasddw", "Error adding document", e);
                         Toast.makeText(getApplicationContext(), "SignUp that bai", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            SharedPreferences pre= getSharedPreferences(Constants.REF_NAME, MODE_PRIVATE);
+                            SharedPreferences.Editor edit= pre.edit();
+                            edit.putString(Constants.USER_KEY, task.getResult().getId());
+                            edit.putString(Constants.USER_NAME, strFullName);
+                            edit.commit();
+                        }
                     }
                 });
     }

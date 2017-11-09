@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import dev.uit.grablove.Fragment.Tab1SettingFragment;
 import dev.uit.grablove.Fragment.Tab2SwipeFragment;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.icon_pen_selecotor);
         tabLayout.getTabAt(1).setIcon(R.drawable.icon_tele_selector);
         tabLayout.getTabAt(2).setIcon(R.drawable.icon_chat_selector);
-
 
 
     }
