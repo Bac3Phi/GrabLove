@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,10 +54,26 @@ public class SignInActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignIn();
+                if (!checkIsEmpty())
+                    SignIn();
             }
         });
 
+    }
+
+    private boolean checkIsEmpty() {
+        strUserName = etUserName.getText().toString();
+        strPassword = etPassword.getText().toString();
+        boolean isEmpty = false;
+        if(TextUtils.isEmpty(strUserName)) {
+            etUserName.setError("You must enter user name");
+            isEmpty = true;
+        }
+        if(TextUtils.isEmpty(strPassword)) {
+            etPassword.setError("You must enter password");
+            isEmpty = true;
+        }
+        return isEmpty;
     }
 
     private void SignIn() {
@@ -64,9 +81,6 @@ public class SignInActivity extends AppCompatActivity {
         progressDialog.setMessage("Login...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
-        strUserName = etUserName.getText().toString();
-        strPassword = etPassword.getText().toString();
 
         db = FirebaseFirestore.getInstance();
         db.collection("Users")
@@ -77,6 +91,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             if (task.getResult().isEmpty()) {
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "UserName khong ton tai!!", Toast.LENGTH_LONG).show();
                             } else {
                                 for (DocumentSnapshot document : task.getResult()) {

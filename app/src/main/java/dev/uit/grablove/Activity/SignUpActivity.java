@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,14 +54,31 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkIsEmpty();
-                retriveData();
+                if (!checkIsEmpty())
+                    retriveData();
             }
         });
 
     }
 
-    private void checkIsEmpty() {
+    private boolean checkIsEmpty() {
+        strUsername = etUserName.getText().toString();
+        strPassword = etPassword.getText().toString();
+        strFullName = etFullName.getText().toString();
+        boolean isEmpty = false;
+        if(TextUtils.isEmpty(strUsername)) {
+            etUserName.setError("You must enter user name");
+            isEmpty = true;
+        }
+        if(TextUtils.isEmpty(strPassword)) {
+            etPassword.setError("You must enter password");
+            isEmpty = true;
+        }
+        if(TextUtils.isEmpty(strFullName)) {
+            etFullName.setError("You must enter your full name");
+            isEmpty = true;
+        }
+        return isEmpty;
     }
 
     private void map() {
@@ -76,10 +94,6 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setMessage("SignUp...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
-        strUsername = etUserName.getText().toString();
-        strPassword = etPassword.getText().toString();
-        strFullName = etFullName.getText().toString();
 
         checkUserName(strUsername);
     }
@@ -127,6 +141,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
                         Log.w("dasddw", "Error adding document", e);
                         Toast.makeText(getApplicationContext(), "SignUp that bai", Toast.LENGTH_LONG).show();
                     }
