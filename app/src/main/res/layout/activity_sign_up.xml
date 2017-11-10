@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_firewatch_2"
     tools:context="dev.uit.grablove.Activity.SignUpActivity">
     <LinearLayout
         android:orientation="vertical"
@@ -16,7 +16,7 @@
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtUserNameSignUp"
-            android:hint="Your Username"
+            android:hint="Username"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtNameSignUp"
-            android:hint="Your Full Name"
+            android:hint="Full Name"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

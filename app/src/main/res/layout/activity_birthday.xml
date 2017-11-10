@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_firewatch_2"
     tools:context="dev.uit.grablove.Activity.BirthdayActivity">
 <LinearLayout
     android:layout_width="wrap_content"
@@ -53,20 +53,29 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:id="@+id/linearLayout">
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtBirthdayBirthday"
-            android:hint="DD/MM/YY"
-            android:fontFamily="serif-monospace"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="2"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvDob"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/white"
-            android:textSize="25sp"
-            android:inputType="datetime"
-            app:met_baseColor="@android:color/white"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@android:color/white"
-            />
+            android:gravity="left"
+            android:text="20/10/1997"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="20dp"
+            android:textColor="@android:color/white" />
+            <ImageButton
+                android:id="@+id/btnCalenderBirthday"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/icon_calender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

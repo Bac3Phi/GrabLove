@@ -72,11 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
                 <EditText
-                    android:focusable="false"
                     android:paddingLeft="12dp"
                     android:layout_gravity="center"
                     android:textColor="@android:color/darker_gray"
-
                     android:hint="Please tell me about yourself"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

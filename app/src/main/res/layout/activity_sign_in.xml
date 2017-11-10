@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_firewatch_2"
     tools:context="dev.uit.grablove.Activity.SignInActivity">
 
     <LinearLayout
@@ -32,7 +32,7 @@
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPasswordSignIn"
-            android:hint="Your Password"
+            android:hint="Password"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

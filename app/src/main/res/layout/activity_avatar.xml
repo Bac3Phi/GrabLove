@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@drawable/background"
+    android:background="@drawable/background_firewatch_2"
     tools:context="dev.uit.grablove.Activity.AvatarActivity">
         <ImageButton
             android:id="@+id/btnBackAvatar"
