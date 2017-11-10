@@ -3,8 +3,8 @@
     package="dev.uit.grablove">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,13 +15,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.WelcomeActivity"/>
         <activity android:name=".Activity.SignInActivity" />
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.BirthdayActivity" />
@@ -33,7 +27,14 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Fragment.fragment_tab3_chat_communicate" />
         <activity android:name=".Fragment.fragment_tab1_setting_filter" />
-        <activity android:name=".Fragment.fragment_tab1_setting_profile"></activity>
+        <activity android:name=".Fragment.fragment_tab1_setting_profile" />
+        <activity android:name=".Activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -84,13 +84,18 @@ public class SignInActivity extends AppCompatActivity {
                                     if (strPassword.equals(password)){
                                         progressDialog.dismiss();
                                         if (document.getBoolean(Constants.DB_USER_IS_NEW)){
+                                            saveUserNew(document);
                                             Intent main = new Intent(SignInActivity.this, SexActivity.class);
                                             startActivity(main);
+                                            finish();
+                                            WelcomeActivity.getInstance().finish();
                                         }
                                         else {
                                             saveUser(document);
                                             Intent main = new Intent(SignInActivity.this, MainActivity.class);
                                             startActivity(main);
+                                            finish();
+                                            WelcomeActivity.getInstance().finish();
                                         }
                                     }
                                     else {
@@ -101,6 +106,14 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void saveUserNew(DocumentSnapshot documentSnapshot) {
+        SharedPreferences.Editor edit= pre.edit();
+        edit.putString(Constants.USER_KEY, documentSnapshot.getId());
+        edit.putString(Constants.USER_NAME, documentSnapshot.getString(Constants.DB_USER_FULL_NAME));
+        edit.putBoolean(Constants.IS_LOG_IN, true);
+        edit.commit();
     }
 
     private void saveUser(DocumentSnapshot documentSnapshot) {

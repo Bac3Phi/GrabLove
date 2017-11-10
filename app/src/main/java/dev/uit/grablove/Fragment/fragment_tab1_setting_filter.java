@@ -1,6 +1,8 @@
 package dev.uit.grablove.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import dev.uit.grablove.Activity.SignInActivity;
 import dev.uit.grablove.Activity.WelcomeActivity;
+import dev.uit.grablove.Constants;
 import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 import io.apptik.widget.MultiSlider;
@@ -64,8 +67,12 @@ public class fragment_tab1_setting_filter extends AppCompatActivity implements S
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcome = new Intent(getApplicationContext(),WelcomeActivity.class);
+                SharedPreferences settings = getSharedPreferences(Constants.REF_NAME, Context.MODE_PRIVATE);
+                settings.edit().clear().commit();
+                Intent welcome = new Intent(getBaseContext(),WelcomeActivity.class);
                 startActivity(welcome);
+                finish();
+                MainActivity.getInstance().finish();
             }
         });
 

@@ -14,17 +14,21 @@ import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 
 public class WelcomeActivity extends Activity implements View.OnClickListener {
-    Button btnSignIn,btnSignUp;
-    TextView txtSlogan;
-    Animation downtoup,uptodown;
+    private Button btnSignIn,btnSignUp;
+    private TextView txtSlogan;
+    private Animation downtoup,uptodown;
 
-    Button btnTest;
+    private Button btnTest;
+
+    static WelcomeActivity welcomeActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button btnTest  = (Button)findViewById(R.id.button2);
+        welcomeActivity = this;
+
+        /*Button btnTest  = (Button)findViewById(R.id.button2);*/
         LinearLayout layoutLogo = (LinearLayout) findViewById(R.id.layoutLogoWelcome);
         LinearLayout layoutButton = (LinearLayout) findViewById(R.id.layoutButtonWelcome);
 
@@ -34,13 +38,13 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         layoutLogo.setAnimation(uptodown);
         layoutButton.setAnimation(downtoup);
 
-        btnTest.setOnClickListener(new View.OnClickListener() {
+        /*btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent test = new Intent(WelcomeActivity.this,SexActivity.class);
                 startActivity(test);
             }
-        });
+        });*/
 
         btnSignIn = (Button) findViewById(R.id.btnSignInWelcome);
         btnSignUp = (Button)findViewById(R.id.btnSignUpWelcome);
@@ -77,6 +81,10 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
             }
         });*/
 
+    }
+
+    public static WelcomeActivity getInstance(){
+        return   welcomeActivity;
     }
 
     @Override

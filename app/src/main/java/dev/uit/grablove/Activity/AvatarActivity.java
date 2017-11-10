@@ -129,6 +129,9 @@ public class AvatarActivity extends AppCompatActivity {
                             edit.commit();
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(intent);
+                            finish();
+                            SexActivity.getInstance().finish();
+                            BirthdayActivity.getInstance().finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

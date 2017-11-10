@@ -14,10 +14,14 @@ public class BirthdayActivity extends AppCompatActivity {
     private MaterialEditText etDob;
     private FButton btnNext;
 
+    static BirthdayActivity birthdayActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
+
+        birthdayActivity = this;
 
         etDob = (MaterialEditText) findViewById(R.id.edtBirthdayBirthday);
         btnNext = (FButton) findViewById(R.id.btnNextBirthday);
@@ -33,5 +37,9 @@ public class BirthdayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public static BirthdayActivity getInstance(){
+        return   birthdayActivity;
     }
 }

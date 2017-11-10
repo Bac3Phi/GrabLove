@@ -14,10 +14,14 @@ public class SexActivity extends AppCompatActivity implements View.OnClickListen
 
     private Intent intent;
 
+    static SexActivity sexActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sex);
+
+        sexActivity = this;
 
         btnMale = (FButton) findViewById(R.id.btnMaleSex);
         btnFemale = (FButton) findViewById(R.id.btnFemaleSex);
@@ -27,6 +31,10 @@ public class SexActivity extends AppCompatActivity implements View.OnClickListen
         btnMale.setOnClickListener(this);
         btnFemale.setOnClickListener(this);
 
+    }
+
+    public static SexActivity getInstance(){
+        return   sexActivity;
     }
 
     @Override

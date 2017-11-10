@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import dev.uit.grablove.Activity.BirthdayActivity;
 import dev.uit.grablove.Fragment.Tab1SettingFragment;
 import dev.uit.grablove.Fragment.Tab2SwipeFragment;
 import dev.uit.grablove.Fragment.Tab3ChatFragment;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
+    static MainActivity mainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mainActivity = this;
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -55,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.icon_chat_selector);
 
 
+    }
+
+    public static MainActivity getInstance(){
+        return   mainActivity;
     }
 
 

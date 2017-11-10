@@ -120,6 +120,8 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "SignUp thanh cong", Toast.LENGTH_LONG).show();
                         Intent Avatar = new Intent(SignUpActivity.this, SexActivity.class);
                         startActivity(Avatar);
+                        finish();
+                        WelcomeActivity.getInstance().finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
