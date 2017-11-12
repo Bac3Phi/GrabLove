@@ -114,6 +114,7 @@ public class SignInActivity extends AppCompatActivity {
                                         }
                                     }
                                     else {
+                                        progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Password khong dung!!", Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -139,6 +140,12 @@ public class SignInActivity extends AppCompatActivity {
         edit.putString(Constants.USER_DOB, documentSnapshot.getString(Constants.DB_USER_DOB));
         edit.putString(Constants.USER_AVATAR, documentSnapshot.getString(Constants.DB_USER_AVATAR));
         edit.putBoolean(Constants.IS_LOG_IN, true);
+        edit.putString(Constants.SETTING_SEX_SHOWN,documentSnapshot.getString(Constants.SETTING_SEX_SHOWN));
+        edit.putInt(Constants.SETTING_MAX_DISTANCE, documentSnapshot.getLong(Constants.SETTING_MAX_DISTANCE).intValue());
+        edit.putInt(Constants.SETTING_AGE_MIN, documentSnapshot.getLong(Constants.SETTING_AGE_MIN).intValue());
+        edit.putInt(Constants.SETTING_AGE_MAX, documentSnapshot.getLong(Constants.SETTING_AGE_MAX).intValue());
+        edit.putBoolean(Constants.SETTING_NEW_MATCHES, documentSnapshot.getBoolean(Constants.SETTING_NEW_MATCHES));
+        edit.putBoolean(Constants.SETTING_MESSAGES, documentSnapshot.getBoolean(Constants.SETTING_MESSAGES));
         edit.commit();
     }
 

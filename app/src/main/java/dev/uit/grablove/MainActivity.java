@@ -1,7 +1,20 @@
 package dev.uit.grablove;
 
+import android.*;
+import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,12 +24,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import dev.uit.grablove.Activity.BirthdayActivity;
 import dev.uit.grablove.Fragment.Tab1SettingFragment;
 import dev.uit.grablove.Fragment.Tab2SwipeFragment;
 import dev.uit.grablove.Fragment.Tab3ChatFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
+    private LocationManager locationManager;
+
+    private SharedPreferences pre;
+
+    private FirebaseFirestore db;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     static MainActivity mainActivity;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +70,33 @@ public class MainActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        Criteria criteria = new Criteria();
+        String bestProvider = locationManager.getBestProvider(criteria, false);
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.INTERNET
+            }, 10);
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(bestProvider);
+
+        String msg = "New Latitude: " + location.getLatitude()
+                + "New Longitude: " + location.getLongitude();
+
+        /*Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();*/
+
+        pre = getSharedPreferences(Constants.REF_NAME, MODE_PRIVATE);
+        pre.edit().putString(Constants.LAT_LOCATION, String.valueOf(location.getLatitude())).commit();
+        pre.edit().putString(Constants.LONG_lOCATION, String.valueOf(location.getLongitude())).commit();
+
+/*        Toast.makeText(getBaseContext(), "Lat: " + pre.getString(Constants.LAT_LOCATION,"")
+                + "\nLong: "+ pre.getString(Constants.LONG_lOCATION,""), Toast.LENGTH_LONG).show();*/
+
+        updateLocation();
         mainActivity = this;
 
         // Set up the ViewPager with the sections adapter.
@@ -60,6 +111,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.icon_chat_selector);
 
 
+    }
+
+    private void updateLocation() {
+        Map<String, Object> user = new HashMap<>();
+        user.put(Constants.LAT_LOCATION, Double.parseDouble(pre.getString(Constants.LAT_LOCATION,"")));
+        user.put(Constants.LONG_lOCATION, Double.parseDouble(pre.getString(Constants.LONG_lOCATION,"")));
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .document(pre.getString(Constants.USER_KEY, ""))
+                .update(user);
     }
 
     public static MainActivity getInstance(){
@@ -87,6 +149,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        /*String msg = "New Latitude: " + location.getLatitude()
+                + "New Longitude: " + location.getLongitude();
+
+        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();*/
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(intent);
+        Toast.makeText(getBaseContext(), "Gps is turned off!! ",
+                Toast.LENGTH_SHORT).show();
     }
 
 

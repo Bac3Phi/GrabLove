@@ -55,19 +55,20 @@
                     android:textStyle="bold" />
 
                 <Switch
-                    android:id="@+id/switchTab1Male"
+                    android:id="@+id/switchMale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
                     android:text="Male"
-                    tools:checked="true" />
+                    android:checked="false" />
 
                 <Switch
-                    android:id="@+id/switch2"
+                    android:id="@+id/switchFemale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:checked="false"/>
             </LinearLayout>
 
             <LinearLayout
@@ -219,12 +220,12 @@
 
                 <Switch
 
-                    android:id="@+id/switchTab1ShowMe"
+                    android:id="@+id/switchShowMe"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginRight="12dp"
                     android:text="Show me on GrabLove"
-                    tools:checked="true" />
+                    android:checked="true" />
             </RelativeLayout>
 
             <TextView
@@ -252,36 +253,36 @@
                     android:textStyle="bold" />
 
                 <Switch
-                    android:id="@+id/switchTab1NewMatches"
+                    android:id="@+id/switchNewMatches"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
                     android:text="New Matches"
-                    tools:checked="true" />
+                    android:checked="false" />
 
                 <Switch
-                    android:id="@+id/switchTab1Messages"
+                    android:id="@+id/switchMessages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
                     android:text="Messages"
-                    tools:checked="true" />
+                    android:checked="false" />
 
                 <Switch
-                    android:id="@+id/switchTab1MessagesLikes"
+                    android:id="@+id/switchMessagesLikes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
                     android:text="Messages Likes"
-                    tools:checked="true" />
+                    android:checked="true" />
 
                 <Switch
-                    android:id="@+id/switchTab1SuperLikes"
+                    android:id="@+id/switchSuperLikes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="12dp"
                     android:text="Super Likes"
-                    tools:checked="true" />
+                    android:checked="true" />
 
             </LinearLayout>
 

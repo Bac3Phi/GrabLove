@@ -12,6 +12,8 @@ public class Constants {
     public   static  final  String USER_AVATAR = "avatar";
     public   static  final  String USER_KEY = "userkey";
     public   static  final  String IS_LOG_IN = "islogin";
+    public   static  final  String LONG_lOCATION = "long_location";
+    public   static  final  String LAT_LOCATION = "lat_location";
 
     //DB Fields
 
@@ -23,4 +25,12 @@ public class Constants {
     public   static  final  String DB_USER_SEX = "sex";
     public   static  final  String DB_USER_PASSWORD = "password";
     public   static  final  String DB_USER_FULL_NAME = "fullname";
+
+    //Setting
+    public   static  final  String SETTING_SEX_SHOWN = "setting_sex";
+    public   static  final  String SETTING_MAX_DISTANCE = "setting_max_distance";
+    public   static  final  String SETTING_AGE_MIN = "setting_age_min";
+    public   static  final  String SETTING_AGE_MAX = "setting_age_max";
+    public   static  final  String SETTING_NEW_MATCHES = "setting_new_matches";
+    public   static  final  String SETTING_MESSAGES = "setting_messages";
 }

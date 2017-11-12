@@ -1,17 +1,31 @@
 package dev.uit.grablove.Fragment;
 
+import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
@@ -21,24 +35,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 import at.markushi.ui.CircleButton;
+import dev.uit.grablove.Constants;
 import dev.uit.grablove.Model.TouristSpot;
 import dev.uit.grablove.Model.TouristSpotCardAdapter;
 import dev.uit.grablove.R;
+
+import static android.content.Context.MODE_PRIVATE;
+import static android.support.v4.content.PermissionChecker.checkSelfPermission;
 
 /**
  * Created by Phi Poz on 10/14/2017.
  */
 
-public class Tab2SwipeFragment extends Fragment {
+public class Tab2SwipeFragment extends Fragment  {
     private ProgressBar progressBar;
     private CardStackView cardStackView;
     private TouristSpotCardAdapter adapter;
 
-    private CircleButton btnRefresh,btnLike,btnDislike,btnSuperLike;
+    private View rootView;
+
+    private CircleButton btnRefresh, btnLike, btnDislike, btnSuperLike;
+
+    @SuppressLint("WrongConstant")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_tab2_swipe, container, false);
+        rootView = inflater.inflate(R.layout.fragment_tab2_swipe, container, false);
+
         actionButton(rootView);
         setup(rootView);
         reload();

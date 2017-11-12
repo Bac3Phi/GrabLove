@@ -40,6 +40,9 @@ public class AvatarActivity extends AppCompatActivity {
     private ImageView ivAvatar;
     private Bitmap imgAvatar;
 
+    private String strSex;
+    private String strDob;
+
     private FButton btnFinish;
 
     private FirebaseStorage storage;
@@ -64,6 +67,9 @@ public class AvatarActivity extends AppCompatActivity {
 
         pre=getSharedPreferences (Constants.REF_NAME,MODE_PRIVATE);
         edit= pre.edit();
+
+        strSex = getIntent().getStringExtra("sex");
+        strDob = getIntent().getStringExtra("dob");
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +101,19 @@ public class AvatarActivity extends AppCompatActivity {
         edit.putString(Constants.USER_SEX, getIntent().getStringExtra("sex"));
         edit.putString(Constants.USER_DOB, getIntent().getStringExtra("dob"));
         edit.putBoolean(Constants.IS_LOG_IN, true);
+        if (strSex.matches("male")){
+            edit.putString(Constants.SETTING_SEX_SHOWN, "female");
+        }
+        else edit.putString(Constants.SETTING_SEX_SHOWN, "male");
+        edit.putInt(Constants.SETTING_MAX_DISTANCE, 10);
+        edit.putInt(Constants.SETTING_AGE_MIN, 18);
+        edit.putInt(Constants.SETTING_AGE_MAX, 22);
+        edit.putBoolean(Constants.SETTING_NEW_MATCHES, true);
+        edit.putBoolean(Constants.SETTING_MESSAGES, true);
         edit.commit();
     }
 
     private void uploadInfo() {
-        String strSex = getIntent().getStringExtra("sex");
-        String strDob = getIntent().getStringExtra("dob");
-
         Map<String, Object> data = new HashMap<>();
         data.put(Constants.DB_USER_SEX,strSex);
         data.put(Constants.DB_USER_DOB, strDob);
@@ -111,6 +123,26 @@ public class AvatarActivity extends AppCompatActivity {
         db.collection("Users")
                 .document(pre.getString(Constants.USER_KEY, ""))
                 .update(data);
+        addSetting();
+    }
+
+    private void addSetting() {
+        Map<String, Object> user = new HashMap<>();
+        if (strSex.matches("male")){
+            user.put(Constants.SETTING_SEX_SHOWN, "female");
+        }
+        else user.put(Constants.SETTING_SEX_SHOWN, "male");
+
+        user.put(Constants.SETTING_MAX_DISTANCE, 10);
+        user.put(Constants.SETTING_AGE_MIN, 18);
+        user.put(Constants.SETTING_AGE_MAX, 22);
+        user.put(Constants.SETTING_NEW_MATCHES, true);
+        user.put(Constants.SETTING_MESSAGES, true);
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .document(pre.getString(Constants.USER_KEY, ""))
+                .update(user);
     }
 
     private void uploadImage() {
@@ -137,7 +169,8 @@ public class AvatarActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            progressDialog.dismiss();
+                            //Toast.makeText(getBaseContext(), "")
                         }
                     });
         }
