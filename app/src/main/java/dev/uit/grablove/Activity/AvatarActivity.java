@@ -41,7 +41,7 @@ public class AvatarActivity extends AppCompatActivity {
     private Bitmap imgAvatar;
 
     private String strSex;
-    private String strDob;
+    private int iAge;
 
     private FButton btnFinish;
 
@@ -69,7 +69,7 @@ public class AvatarActivity extends AppCompatActivity {
         edit= pre.edit();
 
         strSex = getIntent().getStringExtra("sex");
-        strDob = getIntent().getStringExtra("dob");
+        iAge = getIntent().getIntExtra("age", 0);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class AvatarActivity extends AppCompatActivity {
 
     private void saveUser() {
         edit.putString(Constants.USER_SEX, getIntent().getStringExtra("sex"));
-        edit.putString(Constants.USER_DOB, getIntent().getStringExtra("dob"));
+        edit.putInt(Constants.USER_AGE, getIntent().getIntExtra("age", 0));
         edit.putBoolean(Constants.IS_LOG_IN, true);
         if (strSex.matches("male")){
             edit.putString(Constants.SETTING_SEX_SHOWN, "female");
@@ -116,7 +116,7 @@ public class AvatarActivity extends AppCompatActivity {
     private void uploadInfo() {
         Map<String, Object> data = new HashMap<>();
         data.put(Constants.DB_USER_SEX,strSex);
-        data.put(Constants.DB_USER_DOB, strDob);
+        data.put(Constants.DB_USER_AGE, iAge);
         data.put(Constants.DB_USER_IS_NEW, false);
 
         db = FirebaseFirestore.getInstance();

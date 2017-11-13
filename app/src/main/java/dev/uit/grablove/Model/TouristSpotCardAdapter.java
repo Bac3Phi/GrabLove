@@ -16,7 +16,9 @@ import com.bumptech.glide.Glide;
 
 import dev.uit.grablove.R;
 
-public class TouristSpotCardAdapter extends ArrayAdapter<TouristSpot> {
+public class TouristSpotCardAdapter extends ArrayAdapter<User> {
+
+    private User spot;
 
     public TouristSpotCardAdapter(Context context) {
         super(context, 0);
@@ -35,13 +37,17 @@ public class TouristSpotCardAdapter extends ArrayAdapter<TouristSpot> {
             holder = (ViewHolder) contentView.getTag();
         }
 
-        TouristSpot spot = getItem(position);
+        spot = getItem(position);
 
-        holder.name.setText(spot.name);
-        holder.city.setText(spot.city);
-        Glide.with(getContext()).load(spot.url).into(holder.image);
+        holder.name.setText(spot.getFullname());
+        holder.city.setText(String.valueOf(spot.getAge()));
+        Glide.with(getContext()).load(spot.getAvatar()).into(holder.image);
 
         return contentView;
+    }
+
+    public String getKey(){
+        return spot.getUserKey();
     }
 
     private static class ViewHolder {

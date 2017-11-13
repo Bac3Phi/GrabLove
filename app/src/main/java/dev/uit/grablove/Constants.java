@@ -8,7 +8,7 @@ public class Constants {
     public   static  final  String REF_NAME = "user";
     public   static  final  String USER_NAME = "username";
     public   static  final  String USER_SEX = "sex";
-    public   static  final  String USER_DOB = "dob";
+    public   static  final  String USER_AGE = "age";
     public   static  final  String USER_AVATAR = "avatar";
     public   static  final  String USER_KEY = "userkey";
     public   static  final  String IS_LOG_IN = "islogin";
@@ -19,12 +19,14 @@ public class Constants {
 
     public   static  final  String DB_USER_KEY = "userkey";
     public   static  final  String DB_USER_NAME = "username";
-    public   static  final  String DB_USER_DOB = "dob";
+    public   static  final  String DB_USER_AGE = "age";
     public   static  final  String DB_USER_AVATAR = "avatar";
     public   static  final  String DB_USER_IS_NEW = "isnew";
     public   static  final  String DB_USER_SEX = "sex";
     public   static  final  String DB_USER_PASSWORD = "password";
     public   static  final  String DB_USER_FULL_NAME = "fullname";
+    public   static  final  String DB_USER_LIKED_ID = "user_liked";
+    public   static  final  String DB_USER_UNLIKED_ID = "user_unliked";
 
     //Setting
     public   static  final  String SETTING_SEX_SHOWN = "setting_sex";

@@ -27,10 +27,10 @@ import info.hoang8f.widget.FButton;
 public class BirthdayActivity extends AppCompatActivity {
     private MaterialEditText etDob;
     private FButton btnNext;
-    TextView tvDob;
-    Calendar calendarDob;
-    int day, month,year;
-    ImageButton btnCalendarDob;
+    private TextView tvDob;
+    private Calendar calendarDob;
+    private int day, month,year, currentYear;
+    private ImageButton btnCalendarDob;
     static BirthdayActivity birthdayActivity;
 
     @Override
@@ -62,6 +62,7 @@ public class BirthdayActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                     i1 = i1+1;
                     tvDob.setText(i2+"/"+i1+"/"+i);
+                    currentYear = i;
                     }
                 },year,month,day);
                 datePickerDialog.show();
@@ -75,7 +76,7 @@ public class BirthdayActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getBaseContext(), AvatarActivity.class);
                 intent.putExtra("sex", strSex);
-                intent.putExtra("dob", tvDob.getText().toString());
+                intent.putExtra("age", Calendar.getInstance().get(Calendar.YEAR)-currentYear);
                 startActivity(intent);
             }
         });

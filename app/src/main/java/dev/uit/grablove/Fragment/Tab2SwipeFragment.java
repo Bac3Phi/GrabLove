@@ -27,17 +27,27 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import at.markushi.ui.CircleButton;
 import dev.uit.grablove.Constants;
 import dev.uit.grablove.Model.TouristSpot;
 import dev.uit.grablove.Model.TouristSpotCardAdapter;
+import dev.uit.grablove.Model.User;
 import dev.uit.grablove.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -52,6 +62,13 @@ public class Tab2SwipeFragment extends Fragment  {
     private CardStackView cardStackView;
     private TouristSpotCardAdapter adapter;
 
+    private User user;
+
+    private FirebaseFirestore db;
+    private SharedPreferences pre;
+
+    private List<User> userList;
+
     private View rootView;
 
     private CircleButton btnRefresh, btnLike, btnDislike, btnSuperLike;
@@ -62,10 +79,86 @@ public class Tab2SwipeFragment extends Fragment  {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tab2_swipe, container, false);
 
+        pre = getActivity().getSharedPreferences(Constants.REF_NAME, MODE_PRIVATE);
+        userList = new LinkedList<>();
+
         actionButton(rootView);
-        setup(rootView);
-        reload();
+        getListFromDB();
         return rootView;
+    }
+
+    private void getListFromDB() {
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .whereEqualTo(Constants.DB_USER_SEX, pre.getString(Constants.SETTING_SEX_SHOWN,""))
+/*                .orderBy(Constants.DB_USER_AGE)
+                .startAt(pre.getInt(Constants.SETTING_AGE_MIN,18))
+                .endAt(pre.getInt(Constants.SETTING_AGE_MAX, 22))*/
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                user = document.toObject(User.class);
+                                user.setUserKey(document.getId());
+                                //checkUnliked(document);
+                                userList.add(user);
+                            }
+                            checkDistance();
+                            adapter = createTouristSpotCardAdapter(userList);
+                            setup();
+                            reload();
+                        } else {
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+    }
+
+    /*private void checkUnliked(DocumentSnapshot document) {
+        db = FirebaseFirestore.getInstance();
+        db.collection("users/" + document.getId() +"/unliked")
+                .whereEqualTo(Constants.DB_USER_UNLIKED_ID, pre.getString(Constants.USER_KEY, ""))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.getResult().isEmpty()) {
+                            userList.add(user);
+                        }
+                    }
+                });
+    }*/
+
+    private void checkDistance() {
+        for (User user: userList
+             ) {
+            Location startPoint=new Location("locationA");
+            startPoint.setLatitude(Double.parseDouble(pre.getString(Constants.LAT_LOCATION,"")));
+            startPoint.setLongitude(Double.parseDouble(pre.getString(Constants.LONG_lOCATION,"")));
+
+            Location endPoint=new Location("locationA");
+            endPoint.setLatitude(user.getLat_location());
+            endPoint.setLongitude(user.getLong_location());
+
+            int distance=(int) startPoint.distanceTo(endPoint)/1000;
+
+            if (distance > pre.getInt(Constants.SETTING_MAX_DISTANCE,0)
+                    && (user.getAge() < pre.getInt(Constants.SETTING_AGE_MIN,0)
+                    || user.getAge() > pre.getInt(Constants.SETTING_AGE_MAX,0))){
+                userList.remove(user);
+            }
+            else {
+                user.setDistance(distance);
+            }
+        }
     }
 
     private void actionButton(View rootView) {
@@ -77,7 +170,7 @@ public class Tab2SwipeFragment extends Fragment  {
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reload();
+
             }
         });
         btnDislike.setOnClickListener(new View.OnClickListener() {
@@ -94,26 +187,26 @@ public class Tab2SwipeFragment extends Fragment  {
             }
         });
     }
-
+/*
     private TouristSpot createTouristSpot() {
-        return new TouristSpot("Yasaka Shrine", "22", "https://i.imgur.com/qUGY7gL.jpg");
+        return new TouristSpot("Yasaka Shrine", "22", "10","https://i.imgur.com/qUGY7gL.jpg");
     }
     private List<TouristSpot> createTouristSpots() {
         List<TouristSpot> spots = new ArrayList<>();
-        spots.add(new TouristSpot("Yasaka Shrine", "21", "https://i.imgur.com/GfXdZjo.jpg"));
-        spots.add(new TouristSpot("Fushimi Inari Shrine", "22", "https://i.imgur.com/v1mEgOd.jpg"));
-        spots.add(new TouristSpot("Bamboo Forest", "20", "https://i.imgur.com/dUU2UO6.jpg"));
-        spots.add(new TouristSpot("Brooklyn Bridge", "25", "https://i.imgur.com/2Fa14rb.jpg"));
-        spots.add(new TouristSpot("Sevenbaby", "25", "https://i.imgur.com/mBmnbo2.jpg"));
-        spots.add(new TouristSpot("Xeimei", "21", "https://i.imgur.com/0L6SQ0D.jpg"));
+        spots.add(new TouristSpot("Yasaka Shrine", "21", "10","https://i.imgur.com/GfXdZjo.jpg"));
+        spots.add(new TouristSpot("Fushimi Inari Shrine", "22", "10","https://i.imgur.com/v1mEgOd.jpg"));
+        spots.add(new TouristSpot("Bamboo Forest", "20", "10","https://i.imgur.com/dUU2UO6.jpg"));
+        spots.add(new TouristSpot("Brooklyn Bridge", "25", "10","https://i.imgur.com/2Fa14rb.jpg"));
+        spots.add(new TouristSpot("Sevenbaby", "25", "10","https://i.imgur.com/mBmnbo2.jpg"));
+        spots.add(new TouristSpot("Xeimei", "21", "10","https://i.imgur.com/0L6SQ0D.jpg"));
         return spots;
-    }
-    private TouristSpotCardAdapter createTouristSpotCardAdapter() {
+    }*/
+    private TouristSpotCardAdapter createTouristSpotCardAdapter(List<User> users) {
         final TouristSpotCardAdapter adapter = new TouristSpotCardAdapter(getContext());
-        adapter.addAll(createTouristSpots());
+        adapter.addAll(users);
         return adapter;
     }
-    private void setup(View rootView) {
+    private void setup() {
         progressBar = (ProgressBar) rootView.findViewById(R.id.activity_main_progress_bar);
 
         cardStackView = (CardStackView) rootView.findViewById(R.id.activity_main_card_stack_view);
@@ -130,6 +223,17 @@ public class Tab2SwipeFragment extends Fragment  {
                 if (cardStackView.getTopIndex() == adapter.getCount() - 5) {
                     Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
                     paginate();
+                }
+                if (direction == direction.Left){
+             /*       Map<String, Object> user = new HashMap<>();
+                    user.put(Constants.DB_USER_UNLIKED_ID,pre.getString(Constants.USER_KEY, ""));
+
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("users/" + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey() +"/unliked")
+                            .add(user);*/
+                }
+                if (direction == direction.Right){
+                    swipeRightToDB();
                 }
             }
 
@@ -150,13 +254,39 @@ public class Tab2SwipeFragment extends Fragment  {
         });
     }
 
+    private void swipeRightToDB() {
+        Map<String, Object> user = new HashMap<>();
+        user.put(Constants.DB_USER_LIKED_ID,pre.getString(Constants.USER_KEY, ""));
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("users/" + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey() +"/liked")
+                .add(user);
+        checkLikedToMatch();
+      /*  Toast.makeText(getContext(), "Left - " + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey()
+                + "\nindex: " + (cardStackView.getTopIndex()-1), Toast.LENGTH_LONG).show();*/
+    }
+
+    private void checkLikedToMatch() {
+        db = FirebaseFirestore.getInstance();
+        db.collection("users/" + pre.getString(Constants.USER_KEY,"") +"/liked")
+                .whereEqualTo(Constants.DB_USER_LIKED_ID, adapter.getItem(cardStackView.getTopIndex()-1).getUserKey())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (!task.getResult().isEmpty()) {
+                            Toast.makeText(getContext(), "You are matched!!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
     private void reload() {
         cardStackView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter = createTouristSpotCardAdapter();
                 cardStackView.setAdapter(adapter);
                 cardStackView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
@@ -164,16 +294,16 @@ public class Tab2SwipeFragment extends Fragment  {
         }, 1000);
     }
 
-    private LinkedList<TouristSpot> extractRemainingTouristSpots() {
-        LinkedList<TouristSpot> spots = new LinkedList<>();
+    private LinkedList<User> extractRemainingTouristSpots() {
+        LinkedList<User> spots = new LinkedList<>();
         for (int i = cardStackView.getTopIndex(); i < adapter.getCount(); i++) {
             spots.add(adapter.getItem(i));
         }
         return spots;
     }
 
-    private void addFirst() {
-        LinkedList<TouristSpot> spots = extractRemainingTouristSpots();
+    /*private void addFirst() {
+        LinkedList<User> spots = extractRemainingTouristSpots();
         spots.addFirst(createTouristSpot());
         adapter.clear();
         adapter.addAll(spots);
@@ -210,16 +340,16 @@ public class Tab2SwipeFragment extends Fragment  {
         adapter.clear();
         adapter.addAll(spots);
         adapter.notifyDataSetChanged();
-    }
+    }*/
 
     private void paginate() {
         cardStackView.setPaginationReserved();
-        adapter.addAll(createTouristSpots());
+        adapter.addAll(userList);
         adapter.notifyDataSetChanged();
     }
 
     public void swipeLeft() {
-        List<TouristSpot> spots = extractRemainingTouristSpots();
+        List<User> spots = extractRemainingTouristSpots();
         if (spots.isEmpty()) {
             return;
         }
@@ -244,7 +374,7 @@ public class Tab2SwipeFragment extends Fragment  {
     }
 
     public void swipeRight() {
-        List<TouristSpot> spots = extractRemainingTouristSpots();
+        List<User> spots = extractRemainingTouristSpots();
         if (spots.isEmpty()) {
             return;
         }
@@ -271,4 +401,5 @@ public class Tab2SwipeFragment extends Fragment  {
     private void reverse() {
         cardStackView.reverse();
     }
+
 }

@@ -6,31 +6,29 @@ package dev.uit.grablove.Model;
 
 public class User {
     private String UserKey;
-    private String Avatar;
+    private String avatar;
     private String Description;
-    private String DoB;
-    private String Location;
-    private String Name;
-    private String Password;
-    private String Phone;
-    private String Sex;
-    private String UserName;
+    private int age;
+    private double lat_location;
+    private double long_location;
+    private int distance;
+    private String fullname;
+    private String sex;
 
     public User(){
 
     }
 
-    public User(String userKey, String avatar, String description, String doB, String location, String name, String password, String phone, String sex, String userName) {
+    public User(String userKey, String avatar, String description, int age, double lat_location, double long_location, int distance, String fullname, String sex) {
         UserKey = userKey;
-        Avatar = avatar;
+        this.avatar = avatar;
         Description = description;
-        DoB = doB;
-        Location = location;
-        Name = name;
-        Password = password;
-        Phone = phone;
-        Sex = sex;
-        UserName = userName;
+        this.age = age;
+        this.lat_location = lat_location;
+        this.long_location = long_location;
+        this.distance = distance;
+        this.fullname = fullname;
+        this.sex = sex;
     }
 
     public String getUserKey() {
@@ -42,11 +40,11 @@ public class User {
     }
 
     public String getAvatar() {
-        return Avatar;
+        return avatar;
     }
 
     public void setAvatar(String avatar) {
-        Avatar = avatar;
+        this.avatar = avatar;
     }
 
     public String getDescription() {
@@ -57,59 +55,51 @@ public class User {
         Description = description;
     }
 
-    public String getDoB() {
-        return DoB;
+    public int getAge() {
+        return age;
     }
 
-    public void setDoB(String doB) {
-        DoB = doB;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getLocation() {
-        return Location;
+    public double getLat_location() {
+        return lat_location;
     }
 
-    public void setLocation(String location) {
-        Location = location;
+    public void setLat_location(double lat_location) {
+        this.lat_location = lat_location;
     }
 
-    public String getName() {
-        return Name;
+    public double getLong_location() {
+        return long_location;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setLong_location(double long_location) {
+        this.long_location = long_location;
     }
 
-    public String getPassword() {
-        return Password;
+    public int getDistance() {
+        return distance;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
-    public String getPhone() {
-        return Phone;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setPhone(String phone) {
-        Phone = phone;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getSex() {
-        return Sex;
+        return sex;
     }
 
     public void setSex(String sex) {
-        Sex = sex;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
+        this.sex = sex;
     }
 }

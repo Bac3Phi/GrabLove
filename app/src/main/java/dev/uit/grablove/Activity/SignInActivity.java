@@ -137,7 +137,7 @@ public class SignInActivity extends AppCompatActivity {
         edit.putString(Constants.USER_KEY, documentSnapshot.getId());
         edit.putString(Constants.USER_NAME, documentSnapshot.getString(Constants.DB_USER_FULL_NAME));
         edit.putString(Constants.USER_SEX, documentSnapshot.getString(Constants.DB_USER_SEX));
-        edit.putString(Constants.USER_DOB, documentSnapshot.getString(Constants.DB_USER_DOB));
+        edit.putInt(Constants.USER_AGE, documentSnapshot.getLong(Constants.DB_USER_AGE).intValue());
         edit.putString(Constants.USER_AVATAR, documentSnapshot.getString(Constants.DB_USER_AVATAR));
         edit.putBoolean(Constants.IS_LOG_IN, true);
         edit.putString(Constants.SETTING_SEX_SHOWN,documentSnapshot.getString(Constants.SETTING_SEX_SHOWN));

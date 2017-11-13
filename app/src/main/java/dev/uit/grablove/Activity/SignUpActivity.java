@@ -150,6 +150,7 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.dismiss();
                             SharedPreferences pre= getSharedPreferences(Constants.REF_NAME, MODE_PRIVATE);
                             SharedPreferences.Editor edit= pre.edit();
                             edit.putString(Constants.USER_KEY, task.getResult().getId());
