@@ -7,14 +7,16 @@ package dev.uit.grablove.Model;
 public class Message {
     private String msg;
     private String From;
-
+    private UserType userType;
     public Message(){
 
     }
 
-    public Message(String msg, String from) {
+    public Message(String msg, UserType userType) {
         this.msg = msg;
-        From = from;
+        this.userType = userType;
+
+
     }
 
     public String getMsg() {
@@ -31,5 +33,13 @@ public class Message {
 
     public void setFrom(String from) {
         From = from;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

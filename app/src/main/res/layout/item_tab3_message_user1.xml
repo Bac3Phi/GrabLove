@@ -34,7 +34,7 @@
 
         <TextView
 
-            android:id="@+id/txtTab3Message"
+            android:id="@+id/txtTab3MessageUser1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="200dp"

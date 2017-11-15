@@ -1,6 +1,7 @@
 package dev.uit.grablove.Activity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import dev.uit.grablove.Fragment.fragment_tab3_chat_communicate;
 import dev.uit.grablove.MainActivity;
 import dev.uit.grablove.R;
 
@@ -28,7 +30,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
         welcomeActivity = this;
 
-        /*Button btnTest  = (Button)findViewById(R.id.button2);*/
+        Button btnTest  = (Button)findViewById(R.id.btnTest);
         LinearLayout layoutLogo = (LinearLayout) findViewById(R.id.layoutLogoWelcome);
         LinearLayout layoutButton = (LinearLayout) findViewById(R.id.layoutButtonWelcome);
 
@@ -38,13 +40,14 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         layoutLogo.setAnimation(uptodown);
         layoutButton.setAnimation(downtoup);
 
-        /*btnTest.setOnClickListener(new View.OnClickListener() {
+        btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent test = new Intent(WelcomeActivity.this,SexActivity.class);
+                Intent test = new Intent(WelcomeActivity.this,fragment_tab3_chat_communicate.class);
                 startActivity(test);
+
             }
-        });*/
+        });
 
         btnSignIn = (Button) findViewById(R.id.btnSignInWelcome);
         btnSignUp = (Button)findViewById(R.id.btnSignUpWelcome);

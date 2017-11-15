@@ -36,14 +36,14 @@
         tools:showIn="@layout/activity_main">
 
         <ListView
-            android:id="@+id/messageListView"
+            android:id="@+id/listviewMessTab3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stackFromBottom="true"
-            android:layout_above="@+id/linearLayout"
+            android:layout_above="@+id/linearLayout1"
             android:divider="@android:color/transparent"
             android:transcriptMode="alwaysScroll"
-            tools:listitem="@layout/item_tab3_message" />
+            tools:listitem="@layout/item_tab3_message_user1" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -56,28 +56,56 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/recordVoiceButton"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:id="@+id/btnSendImg"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/icon_voice_50px" />
+                android:background="@mipmap/icon_picture" />
 
             <EditText
-                android:id="@+id/messageToSend"
+                android:id="@+id/edtMsg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1" />
 
             <ImageButton
+                android:id="@+id/btnSendText"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:onClick="sendMessage"
                 android:layout_gravity="bottom"
-                android:id="@+id/sendButton"
                 android:background="@android:drawable/ic_menu_send" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="69dp"
+            android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/btnSendImg1"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/icon_picture" />
+
+            <EditText
+                android:id="@+id/edtMsg1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnSendText1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom"
+                android:background="@android:drawable/ic_menu_send" />
         </LinearLayout>
 
     </RelativeLayout>
