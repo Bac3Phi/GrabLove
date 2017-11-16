@@ -54,18 +54,15 @@ public class ChatListAdapter extends BaseAdapter {
 
         if (message.getUserType() == UserType.SELF) {
             if (convertView == null) {
-                v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_user2, null, false);
+                v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_self, null, false);
                 holder1 = new ViewHolder1();
-
-
                 holder1.messageTextView = (TextView) v.findViewById(R.id.txtTab3MessageUser2);
-
                 holder1.messageTextView.setText(message.getMsg());
                 v.setTag(holder1);
             } else {
                 v = convertView;
                 holder1 = (ViewHolder1) v.getTag();
-
+                holder1.messageTextView.setText(message.getMsg());
             }
 
 
@@ -73,19 +70,17 @@ public class ChatListAdapter extends BaseAdapter {
         } else if (message.getUserType() == UserType.OTHER) {
 
             if (convertView == null) {
-                v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_user1, null, false);
-
+                v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_other, null, false);
                 holder2 = new ViewHolder2();
-
-
-                holder2.messageTextView = (TextView) v.findViewById(R.id.txtTab3MessageUser1);
+              holder2.messageTextView = (TextView) v.findViewById(R.id.txtTab3MessageUser1);
                 holder2.messageTextView.setText(message.getMsg());
                 v.setTag(holder2);
 
             } else {
                 v = convertView;
-                holder2 = (ViewHolder2) v.getTag();
 
+                holder2 = (ViewHolder2) v.getTag();
+                holder2.messageTextView.setText(message.getMsg());
             }
 
         }

@@ -1,13 +1,26 @@
     package dev.uit.grablove.Fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -20,9 +33,10 @@ import dev.uit.grablove.Model.ChatListAdapter;
 import dev.uit.grablove.Model.Message;
 import dev.uit.grablove.Model.UserType;
 import dev.uit.grablove.R;
+import android.support.v7.widget.Toolbar;
 
 public class fragment_tab3_chat_communicate extends AppCompatActivity {
-
+    Toolbar toolbar;
     ListView listMessage ;
     ImageButton btnSendText;
     ImageButton btnSendText1;
@@ -32,12 +46,14 @@ public class fragment_tab3_chat_communicate extends AppCompatActivity {
     ImageButton btnSendImg1;
     ChatListAdapter listAdapter;
     ArrayList<Message> chatMessage;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tab3_chat_communicate);
 
+        toolbar=(Toolbar) findViewById(R.id.toolbarTab3);
         chatMessage = new ArrayList<>();
         listMessage =(ListView) findViewById(R.id.listviewMessTab3);
         btnSendText =(ImageButton) findViewById(R.id.btnSendText);
@@ -50,13 +66,49 @@ public class fragment_tab3_chat_communicate extends AppCompatActivity {
         listAdapter= new ChatListAdapter(chatMessage,this);
         listMessage.setAdapter(listAdapter);
 
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setTitle("USERNAME");
+        Drawable drawable = new BitmapDrawable(getResources(), createCircleBitmap(BitmapFactory.decodeResource(this.getResources(),R.drawable.avatar_test1)));
+        getSupportActionBar().setIcon(drawable);
         btnSendText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMessage(edtMessage.getText().toString(), UserType.SELF);
+                edtMessage.getText().clear();
             }
         });
     }
+    public Bitmap createCircleBitmap(Bitmap bitmapimg){
+        Bitmap output = Bitmap.createBitmap(bitmapimg.getWidth(),
+                bitmapimg.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmapimg.getWidth(),
+                bitmapimg.getHeight());
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawCircle(bitmapimg.getWidth() / 2,
+                bitmapimg.getHeight() / 2, bitmapimg.getWidth() / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmapimg, rect, rect, paint);
+        return output;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home)
+            this.finish();
+        return super.onOptionsItemSelected(item);
+    }
+
     private void sendMessage(final String msg, UserType userType)
     {
 

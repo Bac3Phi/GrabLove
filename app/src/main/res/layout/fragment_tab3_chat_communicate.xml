@@ -8,20 +8,19 @@
     tools:context="dev.uit.grablove.Fragment.fragment_tab3_chat_communicate">
 
 
-<android.support.design.widget.AppBarLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
+        android:theme="@style/Theme.AppCompat.Light">
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarTab3"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/White"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
     </android.support.design.widget.AppBarLayout>
+
+
 
     <RelativeLayout
         android:id="@+id/content_main"
@@ -43,7 +42,7 @@
             android:layout_above="@+id/linearLayout1"
             android:divider="@android:color/transparent"
             android:transcriptMode="alwaysScroll"
-            tools:listitem="@layout/item_tab3_message_user1" />
+            tools:listitem="@layout/item_tab3_message_other" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
