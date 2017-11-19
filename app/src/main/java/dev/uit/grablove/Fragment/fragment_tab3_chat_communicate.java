@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,6 +47,9 @@ public class fragment_tab3_chat_communicate extends AppCompatActivity {
     ImageButton btnSendImg1;
     ChatListAdapter listAdapter;
     ArrayList<Message> chatMessage;
+
+    ImageView avatar;
+    TextView username;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongViewCast")
     @Override
@@ -62,23 +66,36 @@ public class fragment_tab3_chat_communicate extends AppCompatActivity {
         edtMessage1 =(EditText) findViewById(R.id.edtMsg1);
         btnSendImg =(ImageButton) findViewById(R.id.btnSendImg);
         btnSendImg1 =(ImageButton) findViewById(R.id.btnSendImg1);
+        avatar = (ImageView)findViewById(R.id.ivAvatarTab3Chat);
+        username= (TextView)findViewById(R.id.tvNameUserTab3Chat);
 
         listAdapter= new ChatListAdapter(chatMessage,this);
         listMessage.setAdapter(listAdapter);
 
 
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setTitle("USERNAME");
-        Drawable drawable = new BitmapDrawable(getResources(), createCircleBitmap(BitmapFactory.decodeResource(this.getResources(),R.drawable.avatar_test1)));
-        getSupportActionBar().setIcon(drawable);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Drawable drawable = new BitmapDrawable(getResources(), createCircleBitmap(BitmapFactory.decodeResource(this.getResources(),R.drawable.avatar_test)));
+
+        avatar.setImageDrawable(drawable);
+        username.setText("Hello WORLD");
+
+
         btnSendText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMessage(edtMessage.getText().toString(), UserType.SELF);
                 edtMessage.getText().clear();
+            }
+        });
+
+        btnSendText1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage(edtMessage1.getText().toString(), UserType.OTHER);
+                edtMessage1.getText().clear();
             }
         });
     }
@@ -100,7 +117,7 @@ public class fragment_tab3_chat_communicate extends AppCompatActivity {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmapimg, rect, rect, paint);
         return output;
-    }
+    } // Hàm bo tròn bitmap
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

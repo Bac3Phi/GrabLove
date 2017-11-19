@@ -17,9 +17,29 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/White"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-    </android.support.design.widget.AppBarLayout>
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
 
+            <ImageView
+                android:id="@+id/ivAvatarTab3Chat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="Toolbar Title"
+                android:src="@drawable/icon_tele_blue"
+                android:layout_gravity="left"
+                />
+            <TextView
+                android:id="@+id/tvNameUserTab3Chat"
+                android:layout_marginLeft="30dp"
+                android:text="Phạm Nhật Phi"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.Toolbar>
+
+
+
+    </android.support.design.widget.AppBarLayout>
 
 
     <RelativeLayout
@@ -58,7 +78,7 @@
                 android:id="@+id/btnSendImg"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:background="@mipmap/icon_picture" />
 
             <EditText
