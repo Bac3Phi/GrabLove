@@ -10,10 +10,10 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgItemTab3Chat"
+        android:id="@+id/ivAvatarTab3UserList"
         android:layout_gravity="center"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/avatar_test"
         />
 
@@ -26,7 +26,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtNameTab3Chat"
+            android:id="@+id/tvUserNameTab3UserList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -35,16 +35,16 @@
             tools:text="Name" />
 
         <TextView
-            android:id="@+id/txtMessageTab3Chat"
+            android:id="@+id/tvRecentChatTab3UserList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtNameTab3Chat"
+            android:layout_below="@+id/tvUserNameTab3UserList"
             android:layout_weight="0"
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Message........................." />
 
         <TextView
-            android:id="@+id/timeTextView"
+            android:id="@+id/tvTimeTab3UserList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

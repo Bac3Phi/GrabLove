@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import dev.uit.grablove.R;
 
 /**
- * Created by Phi on 14/11/2017.
+ * Created by PhiPoz on 14/11/2017.
  */
 
 public class ChatListAdapter extends BaseAdapter {
@@ -48,22 +48,22 @@ public class ChatListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = null;
-        Message message = chatMessages.get(position);
-        ViewHolder1 holder1;
-        ViewHolder2 holder2;
+            Message message = chatMessages.get(position);
+            ViewHolder1 holder1;
+            ViewHolder2 holder2;
 
-        if (message.getUserType() == UserType.SELF) {
-            if (convertView == null) {
-                v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_self, null, false);
-                holder1 = new ViewHolder1();
-                holder1.messageTextView = (TextView) v.findViewById(R.id.txtTab3MessageUser2);
-                holder1.messageTextView.setText(message.getMsg());
-                v.setTag(holder1);
-            } else {
-                v = convertView;
-                holder1 = (ViewHolder1) v.getTag();
-                holder1.messageTextView.setText(message.getMsg());
-            }
+            if (message.getUserType() == UserType.SELF) {
+                if (convertView == null) {
+                    v = LayoutInflater.from(context).inflate(R.layout.item_tab3_message_self, null, false);
+                    holder1 = new ViewHolder1();
+                    holder1.messageTextView = (TextView) v.findViewById(R.id.txtTab3MessageUser2);
+                    holder1.messageTextView.setText(message.getMsg());
+                    v.setTag(holder1);
+                } else {
+                    v = convertView;
+                    holder1 = (ViewHolder1) v.getTag();
+                    holder1.messageTextView.setText(message.getMsg());
+                }
 
 
 
@@ -100,7 +100,7 @@ public class ChatListAdapter extends BaseAdapter {
         return message.getUserType().ordinal();
     }
 
-    private class ViewHolder1 {
+    class ViewHolder1 {
         public TextView messageTextView;
         public TextView timeTextView;
 
