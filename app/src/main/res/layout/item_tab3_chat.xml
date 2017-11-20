@@ -4,52 +4,62 @@
     android:orientation="horizontal"
     android:layout_marginTop="64dp"
     android:weightSum="2"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginStart="@dimen/activity_horizontal_margin"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivAvatarTab3UserList"
         android:layout_gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/avatar_test"
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tvUserNameTab3UserList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            <TextView
+                android:id="@+id/tvUserNameTab3UserList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="15dp"
+                android:textColor="#000"
+                tools:text="Name" />
 
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="Name" />
-
-        <TextView
-            android:id="@+id/tvRecentChatTab3UserList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvUserNameTab3UserList"
-            android:layout_weight="0"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Message........................." />
+            <TextView
+                android:id="@+id/tvRecentChatTab3UserList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvUserNameTab3UserList"
+                android:textSize="15dp"
+                tools:text="Message........................."
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvTimeTab3UserList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="3:52 P.M." />
-    </RelativeLayout>
+            tools:text=""
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:layout_gravity="center" />
+    </LinearLayout>
 
 </LinearLayout>

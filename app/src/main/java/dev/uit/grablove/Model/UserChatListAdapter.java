@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
@@ -60,7 +62,11 @@ public class UserChatListAdapter extends BaseAdapter{
                 holder.recentchat= (TextView) v.findViewById(R.id.tvRecentChatTab3UserList);
                 holder.time = (TextView) v.findViewById(R.id.tvTimeTab3UserList);
 
-                holder.avatar.setImageResource(R.drawable.avatar_test1);
+                if (userChatList.getRecentChat() == null){
+                    holder.recentchat.setVisibility(View.GONE);
+                }
+
+                Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
                 holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
@@ -76,7 +82,7 @@ public class UserChatListAdapter extends BaseAdapter{
                 //holder.recentchat= (TextView) v.findViewById(R.id.tvRecentChatTab3UserList);
                //holder.time = (TextView) v.findViewById(R.id.tvTimeTab3UserList);
 
-                holder.avatar.setImageResource(R.drawable.avatar_test1);
+                Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
                 holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));

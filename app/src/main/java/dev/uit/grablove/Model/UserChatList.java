@@ -7,20 +7,22 @@ import java.sql.Time;
  */
 
 public class UserChatList {
+    private String id;
     private String avatar;
     private String recentUser;
     private String recentChat;
     private long time;
 
-    public UserChatList(String avatar, String recentUser, String recentChat) {
-        this.avatar = avatar;
-        this.recentUser = recentUser;
-        this.recentChat = recentChat;
+    public UserChatList() {
 
     }
 
-    public UserChatList() {
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
     }
 
     public long getTime() {

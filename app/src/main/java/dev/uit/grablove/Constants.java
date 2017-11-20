@@ -27,6 +27,12 @@ public class Constants {
     public   static  final  String DB_USER_FULL_NAME = "fullname";
     public   static  final  String DB_USER_LIKED_ID = "user_liked";
     public   static  final  String DB_USER_UNLIKED_ID = "user_unliked";
+    public   static  final  String DB_FRIEND_KEY = "friend-key";
+
+    //Chat DB Fields
+    public   static  final  String CHAT_FROM = "from";
+    public   static  final  String CHAT_MESS = "message";
+    public   static  final  String CHAT_TIME = "time";
 
     //Setting
     public   static  final  String SETTING_SEX_SHOWN = "setting_sex";

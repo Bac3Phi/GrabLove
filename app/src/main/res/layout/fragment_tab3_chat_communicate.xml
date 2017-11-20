@@ -19,7 +19,7 @@
             android:background="@color/White"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAvatarTab3Chat"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -59,10 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stackFromBottom="true"
-            android:layout_above="@+id/linearLayout1"
+            android:layout_above="@+id/linearLayout"
             android:divider="@android:color/transparent"
             android:transcriptMode="alwaysScroll"
-            tools:listitem="@layout/item_tab3_message_other" />
+            tools:listitem="@layout/item_tab3_message_other"
+            android:clickable="false"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -95,38 +96,6 @@
                 android:layout_gravity="bottom"
                 android:background="@android:drawable/ic_menu_send" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="69dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnSendImg1"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/icon_picture" />
-
-            <EditText
-                android:id="@+id/edtMsg1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/btnSendText1"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="bottom"
-                android:background="@android:drawable/ic_menu_send" />
-        </LinearLayout>
-
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 

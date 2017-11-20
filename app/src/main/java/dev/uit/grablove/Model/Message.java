@@ -8,15 +8,17 @@ public class Message {
     private String msg;
     private String From;
     private UserType userType;
+    private long Time;
     public Message(){
 
     }
 
-    public Message(String msg, UserType userType) {
-        this.msg = msg;
-        this.userType = userType;
+    public long getTime() {
+        return Time;
+    }
 
-
+    public void setTime(long time) {
+        Time = time;
     }
 
     public String getMsg() {

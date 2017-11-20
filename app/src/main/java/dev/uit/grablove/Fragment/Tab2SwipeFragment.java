@@ -259,7 +259,7 @@ public class Tab2SwipeFragment extends Fragment  {
         user.put(Constants.DB_USER_LIKED_ID,pre.getString(Constants.USER_KEY, ""));
 
         db = FirebaseFirestore.getInstance();
-        db.collection("users/" + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey() +"/liked")
+        db.collection("Users/" + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey() +"/liked")
                 .add(user);
         checkLikedToMatch();
       /*  Toast.makeText(getContext(), "Left - " + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey()
@@ -268,14 +268,23 @@ public class Tab2SwipeFragment extends Fragment  {
 
     private void checkLikedToMatch() {
         db = FirebaseFirestore.getInstance();
-        db.collection("users/" + pre.getString(Constants.USER_KEY,"") +"/liked")
+        db.collection("Users/" + pre.getString(Constants.USER_KEY,"") +"/liked")
                 .whereEqualTo(Constants.DB_USER_LIKED_ID, adapter.getItem(cardStackView.getTopIndex()-1).getUserKey())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (!task.getResult().isEmpty()) {
-                            Toast.makeText(getContext(), "You are matched!!", Toast.LENGTH_LONG).show();
+                            Map<String, Object> data = new HashMap<>();
+                            data.put(Constants.DB_FRIEND_KEY, adapter.getItem(cardStackView.getTopIndex()-1).getUserKey());
+
+                            db.collection("Users/" + pre.getString(Constants.USER_KEY,"") +"/friends")
+                                    .add(data);
+
+                            data = new HashMap<>();
+                            data.put(Constants.DB_FRIEND_KEY, pre.getString(Constants.USER_KEY,""));
+                            db.collection("Users/" + adapter.getItem(cardStackView.getTopIndex()-1).getUserKey() +"/friends")
+                                    .add(data);
                         }
                     }
                 });
