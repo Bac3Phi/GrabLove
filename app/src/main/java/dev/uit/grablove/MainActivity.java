@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
         Location location = locationManager.getLastKnownLocation(bestProvider);
 
-        String msg = "New Latitude: " + location.getLatitude()
-                + "New Longitude: " + location.getLongitude();
+        //String msg = "New Latitude: " + location.getLatitude()
+         //       + "New Longitude: " + location.getLongitude();
 
         /*Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();*/
 
@@ -100,8 +100,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         mainActivity = this;
 
         // Set up the ViewPager with the sections adapter.
+        int limit = (mSectionsPagerAdapter.getCount() > 1 ? mSectionsPagerAdapter.getCount() - 1 : 1);
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOffscreenPageLimit(limit);
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -194,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         switch (position)
         {
             case 0:
-
                 Tab1SettingFragment tab1 = new Tab1SettingFragment();
                 return tab1;
             case 1:

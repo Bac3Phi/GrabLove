@@ -1,6 +1,7 @@
 package dev.uit.grablove.Model;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class UserChatListAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = null;
             UserChatList userChatList = userChatLists.get(position);
-            ViewHolder holder;
+            final ViewHolder holder;
             if (convertView == null)
             {
                 v = LayoutInflater.from(context).inflate(R.layout.item_tab3_chat, parent, false);
@@ -64,12 +65,16 @@ public class UserChatListAdapter extends BaseAdapter{
 
                 if (userChatList.getRecentChat() == null){
                     holder.recentchat.setVisibility(View.GONE);
-                }
+                }else holder.recentchat.setVisibility(View.VISIBLE);
 
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
                 holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
+                /*if (userChatList.isNewMess()) {
+                    holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
+                }else holder.recentchat.setTypeface(Typeface.DEFAULT);*/
+
                 v.setTag(holder);
 
             }
@@ -82,13 +87,21 @@ public class UserChatListAdapter extends BaseAdapter{
                 //holder.recentchat= (TextView) v.findViewById(R.id.tvRecentChatTab3UserList);
                //holder.time = (TextView) v.findViewById(R.id.tvTimeTab3UserList);
 
+                if (userChatList.getRecentChat() == null){
+                    holder.recentchat.setVisibility(View.GONE);
+                }else holder.recentchat.setVisibility(View.VISIBLE);
+
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
                 holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
+                /*if (userChatList.isNewMess()) {
+                    holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
+                }else holder.recentchat.setTypeface(Typeface.DEFAULT);*/
             }
         return v;
     }
+
     private class ViewHolder
     {
         CircleImageView avatar;

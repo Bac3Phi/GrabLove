@@ -46,7 +46,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
     public class fragment_tab3_chat_communicate extends AppCompatActivity {
@@ -108,12 +110,12 @@ import com.google.firebase.firestore.QuerySnapshot;
                                     db.collection("Users/" + pre.getString(Constants.USER_KEY, "") + "/friends/"
                                             + document.getId() + "/chat")
                                             .orderBy(Constants.CHAT_TIME)
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                    if (!task.getResult().isEmpty()) {
-                                                        for (DocumentSnapshot document : task.getResult()) {
+                                                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                                                    chatMessage.clear();
+                                                    if (!documentSnapshots.isEmpty()) {
+                                                        for (DocumentSnapshot document : documentSnapshots) {
                                                             Message chatmsg = new Message();
                                                             chatmsg.setMsg(document.getString(Constants.CHAT_MESS));
                                                             if (document.getString(Constants.CHAT_FROM).matches(pre.getString(Constants.USER_KEY, ""))){
@@ -177,15 +179,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
             if (msg.trim().length() == 0)
                 return;
-            Message chatmsg = new Message();
+            /*Message chatmsg = new Message();
             chatmsg.setMsg(msg);
             chatmsg.setUserType(userType);
             chatmsg.setTime(new Date().getTime());
             chatMessage.add(chatmsg); // add vao` list
 
             if (listAdapter != null)
-                listAdapter.notifyDataSetChanged();
-
+                listAdapter.notifyDataSetChanged();*/
             sendToDB(msg);
         }
 
@@ -201,7 +202,7 @@ import com.google.firebase.firestore.QuerySnapshot;
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (!task.getResult().isEmpty()){
+                            if (!task.getResult().isEmpty()) {
                                 for (DocumentSnapshot document : task.getResult()) {
                                     db.collection("Users/" + pre.getString(Constants.USER_KEY, "") + "/friends/"
                                             + document.getId() + "/chat")
@@ -217,7 +218,7 @@ import com.google.firebase.firestore.QuerySnapshot;
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (!task.getResult().isEmpty()){
+                            if (!task.getResult().isEmpty()) {
                                 for (DocumentSnapshot document : task.getResult()) {
                                     db.collection("Users/" + FriendId + "/friends/"
                                             + document.getId() + "/chat")
@@ -227,4 +228,11 @@ import com.google.firebase.firestore.QuerySnapshot;
                         }
                     });
         }
+
+        @Override
+        protected void onStart() {
+            super.onStart();
+            //getFromDB();
+        }
     }
+

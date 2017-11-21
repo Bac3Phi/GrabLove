@@ -12,9 +12,18 @@ public class UserChatList {
     private String recentUser;
     private String recentChat;
     private long time;
+    private boolean isNewMess = false;
 
     public UserChatList() {
 
+    }
+
+    public boolean isNewMess() {
+        return isNewMess;
+    }
+
+    public void setNewMess(boolean newMess) {
+        isNewMess = newMess;
     }
 
     public String getId() {
