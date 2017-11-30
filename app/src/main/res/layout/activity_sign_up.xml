@@ -4,29 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_firewatch_2"
+    android:background="@drawable/bg_login_page"
     tools:context="dev.uit.grablove.Activity.SignUpActivity">
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/layoutLogoWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/logo_tele" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:id="@+id/txtSlogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:text="Always give a word or sign of salute when meeting or passing a friend, or even a stranger, if in a lonely place."
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="57dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtNameSignUp"
+            android:hint="Full Name"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/TextBlue"
+            android:textSize="20sp"
+            android:inputType="textPersonName"
+            app:met_baseColor="@color/TextBlue"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="30"
+            app:met_primaryColor="@color/TextBlue"
+            />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtUserNameSignUp"
             android:hint="Username"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/white"
-            android:textSize="34sp"
+            android:textColorHint="@color/TextBlue"
+            android:textSize="20sp"
             android:inputType="text"
-            app:met_baseColor="@android:color/white"
+            app:met_baseColor="@color/TextBlue"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="11"
-            app:met_primaryColor="@android:color/white"
+            app:met_primaryColor="@color/TextBlue"
             />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPasswordSignUp"
@@ -34,28 +76,15 @@
             android:fontFamily="sans-serif-smallcaps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/white"
-            android:textSize="34sp"
+            android:textColorHint="@color/TextBlue"
+            android:textSize="20sp"
             android:inputType="textPassword"
-            app:met_baseColor="@android:color/white"
+            app:met_baseColor="@color/TextBlue"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="15"
-            app:met_primaryColor="@android:color/white"
+            app:met_primaryColor="@color/TextBlue"
             />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtNameSignUp"
-            android:hint="Full Name"
-            android:fontFamily="sans-serif-smallcaps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@android:color/white"
-            android:textSize="34sp"
-            android:inputType="textPersonName"
-            app:met_baseColor="@android:color/white"
-            app:met_floatingLabel="highlight"
-            app:met_maxCharacters="30"
-            app:met_primaryColor="@android:color/white"
-            />
+
 
     </LinearLayout>
 
@@ -63,13 +92,12 @@
         android:id="@+id/btnSignUpSignUp"
         android:text="Sign Up"
         android:textColor="@android:color/white"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         app:shadowColor="@android:color/black"
         app:buttonColor="@color/btnSignUp"
         app:shadowEnabled="true"

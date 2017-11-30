@@ -4,31 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_firewatch_2"
+    android:background="@drawable/bg_login_page"
     tools:context="dev.uit.grablove.Activity.WelcomeActivity">
 
 
     <LinearLayout
+        android:layout_marginTop="40dp"
         android:id="@+id/layoutLogoWelcome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/logo" />
+            android:layout_gravity="center"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/logo_tele" />
 
         <TextView
+            android:textSize="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
             android:id="@+id/txtSlogan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/slogan"
+            android:text="Our Relationship is meant to be. Something that was written in the stars and drawn into our destiny."
             android:textColor="@android:color/white" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="257dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:src="@mipmap/icon_login_fake" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:text="Or"
+        android:textSize="17dp"
+        android:gravity="center"/>
     <LinearLayout
         android:id="@+id/layoutButtonWelcome"
         android:layout_width="match_parent"
@@ -76,6 +97,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
-        android:text="Button" />
+        android:text="Button"
+        android:visibility="gone" />
 
 </RelativeLayout>

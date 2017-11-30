@@ -5,7 +5,9 @@
     <color name="colorAccent">#87CEFA</color>
 
     <color name="btnSignUp">#09b0eb</color>
-    <color name="btnSignActive">#131947</color>
+    <color name="btnSignActive">#87cefa</color>
+
+    <color name="TextBlue">#0089dc</color>
     <color name="WhiteSmoke">#f5f5f5</color>
     <color name="Whitex2">#fdfdfd</color>
     <color name="BlueCustom">#87CEFA</color>
