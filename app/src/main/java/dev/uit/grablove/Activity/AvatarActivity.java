@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class AvatarActivity extends AppCompatActivity {
     private int iAge;
 
     private FButton btnFinish;
-
+    private ImageButton btnBack;
     private FirebaseStorage storage;
     private StorageReference storageRef;
     private FirebaseFirestore db;
@@ -61,7 +62,7 @@ public class AvatarActivity extends AppCompatActivity {
         CircleButton btnAdd = (CircleButton)findViewById(R.id.btnAddAvatar);
         ivAvatar = (ImageView) findViewById(R.id.ivAvatar);
         btnFinish = (FButton) findViewById(R.id.btnFinishAvatar);
-
+        btnBack = (ImageButton) findViewById(R.id.btnBackAvatar);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
@@ -70,6 +71,7 @@ public class AvatarActivity extends AppCompatActivity {
 
         strSex = getIntent().getStringExtra("sex");
         iAge = getIntent().getIntExtra("age", 0);
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +176,12 @@ public class AvatarActivity extends AppCompatActivity {
                         }
                     });
         }
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override

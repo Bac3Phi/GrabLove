@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.WelcomeActivity"/>
+        <activity android:name=".Activity.WelcomeActivity" />
         <activity android:name=".Activity.SignInActivity" />
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.BirthdayActivity" />
@@ -37,6 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Fragment.FragmentTab2Profile"
+            android:label="@string/title_activity_fragment_tab2_profile"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

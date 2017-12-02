@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_firewatch_2"
+    android:background="@color/white"
     tools:context="dev.uit.grablove.Activity.BirthdayActivity">
 <LinearLayout
     android:layout_width="wrap_content"
@@ -17,41 +17,45 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
         android:adjustViewBounds="true"
-        android:maxHeight="30dp"
-        android:maxWidth="30dp"
+        android:maxHeight="40dp"
+        android:maxWidth="40dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/icon_back_1"
+        app:srcCompat="@mipmap/icon_back_40"
         android:background="@android:color/transparent"
-     />
+        />
 </LinearLayout>
     <LinearLayout
+        android:id="@+id/linnebd"
+        android:layout_marginTop="90dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="160dp">
-
+        android:layout_alignParentStart="true">
         <TextView
             android:id="@+id/txtSlogan"
             android:fontFamily="sans-serif-smallcaps"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/birthday"
-            android:textSize="30dp"
-            android:textColor="@android:color/white" />
+            android:gravity="center"
+            android:text="- Choose Your Birthday -"
+            android:textSize="25dp"
+            android:textColor="@android:color/black" />
+       <ImageView
+           android:layout_gravity="center"
+           android:src="@mipmap/icon_birthday_200"
+           android:layout_width="150dp"
+           android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_below="@+id/linnebd"
         android:orientation="vertical"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:id="@+id/linearLayout">
         <LinearLayout
             android:orientation="horizontal"
@@ -66,7 +70,7 @@
             android:text="20/10/1997"
             android:fontFamily="sans-serif-smallcaps"
             android:textSize="20dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
             <ImageButton
                 android:id="@+id/btnCalenderBirthday"
                 android:layout_gravity="center"
@@ -83,20 +87,20 @@
             android:text="@string/birthday_rule"
             android:fontFamily="serif-monospace"
             android:textSize="15dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
     </LinearLayout>
         <info.hoang8f.widget.FButton
             android:id="@+id/btnNextBirthday"
             android:text="@string/next"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textColor="@android:color/white"
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            app:shadowColor="@android:color/black"
-            app:buttonColor="@color/fbutton_color_peter_river"
+            app:shadowColor="@android:color/holo_blue_dark"
+            app:buttonColor="#a7eaf7"
             app:shadowEnabled="true"
             app:shadowHeight="5dp"
             app:cornerRadius="20dp"

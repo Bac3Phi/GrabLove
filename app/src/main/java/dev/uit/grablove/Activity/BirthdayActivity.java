@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class BirthdayActivity extends AppCompatActivity {
     private Calendar calendarDob;
     private int day, month,year, currentYear;
     private ImageButton btnCalendarDob;
+    private ImageButton btnBack;
     static BirthdayActivity birthdayActivity;
 
     @Override
@@ -43,6 +45,7 @@ public class BirthdayActivity extends AppCompatActivity {
         tvDob= (TextView) findViewById(R.id.tvDob);
         btnCalendarDob= (ImageButton) findViewById(R.id.btnCalenderBirthday) ;
         calendarDob = Calendar.getInstance();
+        btnBack= (ImageButton) findViewById(R.id.btnBackBirthday);
 
         day= calendarDob.get(Calendar.DAY_OF_MONTH);
         month= calendarDob.get(Calendar.MONTH);
@@ -80,7 +83,12 @@ public class BirthdayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 

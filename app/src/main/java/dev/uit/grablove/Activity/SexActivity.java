@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import dev.uit.grablove.R;
 import info.hoang8f.widget.FButton;
 
 public class SexActivity extends AppCompatActivity implements View.OnClickListener {
-    private FButton btnMale;
-    private FButton btnFemale;
+    private ImageButton btnMale;
+    private ImageButton btnFemale;
 
     private Intent intent;
 
@@ -23,8 +24,8 @@ public class SexActivity extends AppCompatActivity implements View.OnClickListen
 
         sexActivity = this;
 
-        btnMale = (FButton) findViewById(R.id.btnMaleSex);
-        btnFemale = (FButton) findViewById(R.id.btnFemaleSex);
+        btnMale = (ImageButton) findViewById(R.id.btnMaleSex);
+        btnFemale = ( ImageButton) findViewById(R.id.btnFemaleSex);
 
         intent = new Intent(getBaseContext(), BirthdayActivity.class);
 

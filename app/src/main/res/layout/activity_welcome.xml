@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/layoutLogoWelcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +24,8 @@
 
         <TextView
             android:textSize="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:id="@+id/txtSlogan"
