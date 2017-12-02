@@ -138,8 +138,9 @@ public class Tab2SwipeFragment extends Fragment  {
     }*/
 
     private void checkDistance() {
-        for (User user: userList
-             ) {
+        for (int  i = 0; i < userList.size(); i++)
+        {
+            User user = userList.get(i);
             Location startPoint=new Location("locationA");
             startPoint.setLatitude(Double.parseDouble(pre.getString(Constants.LAT_LOCATION,"")));
             startPoint.setLongitude(Double.parseDouble(pre.getString(Constants.LONG_lOCATION,"")));
@@ -154,6 +155,7 @@ public class Tab2SwipeFragment extends Fragment  {
                     && (user.getAge() < pre.getInt(Constants.SETTING_AGE_MIN,0)
                     || user.getAge() > pre.getInt(Constants.SETTING_AGE_MAX,0))){
                 userList.remove(user);
+                i--;
             }
             else {
                 user.setDistance(distance);
