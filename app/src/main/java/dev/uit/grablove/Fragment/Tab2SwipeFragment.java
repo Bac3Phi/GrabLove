@@ -251,6 +251,17 @@ public class Tab2SwipeFragment extends Fragment  {
 
             @Override
             public void onCardClicked(int index) {
+                Intent intent = new Intent(getActivity(),FragmentTab2Profile.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Avatar",adapter.getItem(cardStackView.getTopIndex()).getAvatar());
+                bundle.putString("Name",adapter.getItem(cardStackView.getTopIndex()).getFullname());
+                bundle.putInt("Age",adapter.getItem(cardStackView.getTopIndex()).getAge());
+                bundle.putString("Description",adapter.getItem(cardStackView.getTopIndex()).getDescription());
+                intent.putExtra("Clicked",bundle);
+                startActivity(intent);
+                Toast.makeText(getContext(), adapter.getItem(cardStackView.getTopIndex()).getFullname(), Toast.LENGTH_SHORT).show();
+
+
                 Log.d("CardStackView", "onCardClicked: " + index);
             }
         });
@@ -366,6 +377,7 @@ public class Tab2SwipeFragment extends Fragment  {
         }
 
         View target = cardStackView.getTopView();
+
 
         ValueAnimator rotation = ObjectAnimator.ofPropertyValuesHolder(
                 target, PropertyValuesHolder.ofFloat("rotation", -10f));

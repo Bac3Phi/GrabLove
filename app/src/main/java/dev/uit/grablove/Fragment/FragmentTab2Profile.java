@@ -1,5 +1,6 @@
 package dev.uit.grablove.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,13 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import dev.uit.grablove.R;
 
 public class FragmentTab2Profile extends AppCompatActivity {
     AppBarLayout appBarLayout;
     CollapsingToolbarLayout toolbarScrolling;
-    TextView tvLocation;
     TextView tvTime;
     TextView tvDescription;
     @Override
@@ -32,11 +35,10 @@ public class FragmentTab2Profile extends AppCompatActivity {
 
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         toolbarScrolling = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-
-        tvLocation = (TextView) findViewById(R.id.tvloction_content_srcolling);
-        tvTime = (TextView) findViewById(R.id.tvloction_content_srcolling);
+        tvTime = (TextView) findViewById(R.id.tvage_content_srcolling);
         tvDescription =(TextView) findViewById(R.id.tvdes_content_scrolling);
-        ImageView iv =new ImageView(this);
+
+        receiveBundle();
         /// Truyền Url avatar qua đây đổ lên iv
         //đổ avatar lên background
         //appBarLayout.setBackground(iv.getDrawable());
@@ -49,6 +51,25 @@ public class FragmentTab2Profile extends AppCompatActivity {
             }
         });
     }
+
+    private void receiveBundle() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("Clicked");
+
+        toolbarScrolling.setTitle(bundle.getString("Name"));
+        String temp = bundle.getString("Avatar");
+        ImageView iv =new ImageView(this);
+        Picasso.with(this)
+                .load(temp)
+                .resize(500, 500)
+                .centerCrop()
+                .into(iv);
+        appBarLayout.setBackground(iv.getDrawable());
+        tvTime.setText(String.valueOf(bundle.getInt("Age")));
+       //Toast.makeText(this,temp , Toast.LENGTH_SHORT).show();
+        tvDescription.setText(bundle.getString("Description"));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home)
