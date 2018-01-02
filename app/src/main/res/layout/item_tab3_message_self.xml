@@ -22,7 +22,7 @@
             android:visibility="gone"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_below="@+id/tvTimeMessageUser2"
             android:id="@+id/individMessageLayout"
             android:layout_width="wrap_content"
@@ -46,6 +46,19 @@
                 android:textSize="15sp"
                 android:textStyle="normal"
                 tools:text="Message" />
-        </LinearLayout>
+
+            <ImageButton
+                android:layout_below="@+id/txtTab3MessageUser2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivMessagePicUser2"
+                android:maxWidth="150dp"
+                android:maxHeight="300dp"
+                android:src="@drawable/loading"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@drawable/background_item_messages_other"
+                android:visibility="visible"/>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

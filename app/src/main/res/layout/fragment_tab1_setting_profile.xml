@@ -112,10 +112,9 @@
                 android:textColor="@color/BlueCustom"
                 android:textStyle="bold" />
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:editable="false"
                 android:id="@+id/edtBirthdayTab1Profile"
                 android:layout_margin="10dp"
-                android:hint="Cập Nhật Lại Sinh Nhật của bạn"
+                android:hint="Cập nhật lại năm sinh của bạn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/TextBlue"

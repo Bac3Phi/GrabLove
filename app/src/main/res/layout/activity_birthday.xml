@@ -89,7 +89,7 @@
             android:textSize="15dp"
             android:textColor="@android:color/black" />
     </LinearLayout>
-        <info.hoang8f.widget.FButton
+        <Button
             android:id="@+id/btnNextBirthday"
             android:text="@string/next"
             android:layout_marginLeft="20dp"
@@ -98,12 +98,6 @@
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            app:shadowColor="@android:color/holo_blue_dark"
-            app:buttonColor="#a7eaf7"
-            app:shadowEnabled="true"
-            app:shadowHeight="5dp"
-            app:cornerRadius="20dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 </RelativeLayout>

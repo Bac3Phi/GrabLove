@@ -27,12 +27,16 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
@@ -83,43 +87,86 @@ public class Tab2SwipeFragment extends Fragment  {
         userList = new LinkedList<>();
 
         actionButton(rootView);
-        getListFromDB();
+        //getListFromDB();
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users/").document(pre.getString(Constants.USER_KEY, ""))
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
+                        userList.clear();
+                        getListFromDB();
+                    }
+                });
+
         return rootView;
     }
 
     private void getListFromDB() {
         db = FirebaseFirestore.getInstance();
-        db.collection("Users")
-                .whereEqualTo(Constants.DB_USER_SEX, pre.getString(Constants.SETTING_SEX_SHOWN,""))
+
+        if (pre.getString(Constants.SETTING_SEX_SHOWN, "").matches("both")){
+            db.collection("Users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    user = document.toObject(User.class);
+                                    user.setUserKey(document.getId());
+                                    //checkUnliked(document);
+                                    userList.add(user);
+                                }
+                                checkDistance();
+                                adapter = createTouristSpotCardAdapter(userList);
+                                setup();
+                                reload();
+                            } else {
+
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+        }
+        else {
+            db.collection("Users")
+                    .whereEqualTo(Constants.DB_USER_SEX, pre.getString(Constants.SETTING_SEX_SHOWN,""))
 /*                .orderBy(Constants.DB_USER_AGE)
                 .startAt(pre.getInt(Constants.SETTING_AGE_MIN,18))
                 .endAt(pre.getInt(Constants.SETTING_AGE_MAX, 22))*/
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                user = document.toObject(User.class);
-                                user.setUserKey(document.getId());
-                                //checkUnliked(document);
-                                userList.add(user);
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    user = document.toObject(User.class);
+                                    user.setUserKey(document.getId());
+                                    //checkUnliked(document);
+                                    userList.add(user);
+                                }
+                                checkDistance();
+                                adapter = createTouristSpotCardAdapter(userList);
+                                setup();
+                                reload();
+                            } else {
+
                             }
-                            checkDistance();
-                            adapter = createTouristSpotCardAdapter(userList);
-                            setup();
-                            reload();
-                        } else {
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
+                    });
+        }
     }
 
     /*private void checkUnliked(DocumentSnapshot document) {

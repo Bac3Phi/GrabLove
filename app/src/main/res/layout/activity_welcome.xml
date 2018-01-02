@@ -36,13 +36,14 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="257dp"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnLoginFaceBook"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
-        android:src="@mipmap/icon_login_fake" />
+        android:layout_marginBottom="150dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,33 +64,23 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <info.hoang8f.widget.FButton
+        <Button
             android:id="@+id/btnSignUpWelcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Sign Up"
-            android:textColor="@android:color/white"
-            app:buttonColor="@color/btnSignUp"
-            app:cornerRadius="20dp"
-            app:shadowColor="@android:color/black"
-            app:shadowEnabled="true"
-            app:shadowHeight="5dp" />
+            android:textColor="@android:color/white" />
 
-        <info.hoang8f.widget.FButton
+        <Button
             android:id="@+id/btnSignInWelcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Sign In"
-            android:textColor="@android:color/white"
-            app:buttonColor="@color/btnSignActive"
-            app:cornerRadius="20dp"
-            app:shadowColor="@android:color/black"
-            app:shadowEnabled="true"
-            app:shadowHeight="5dp" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <Button

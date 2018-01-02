@@ -54,7 +54,7 @@
         app:cb_color="#ffffff"
         app:cb_pressedRingWidth="5dp" />
 
-    <info.hoang8f.widget.FButton
+    <Button
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/btnFinishAvatar"
@@ -63,11 +63,6 @@
         android:layout_marginBottom="21dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:shadowColor="@android:color/holo_blue_dark"
-        app:buttonColor="#a7eaf7"
-        app:shadowEnabled="true"
-        app:shadowHeight="5dp"
-        app:cornerRadius="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -1,55 +1,66 @@
     package dev.uit.grablove.Fragment;
 
-import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+    import android.Manifest;
+    import android.annotation.SuppressLint;
+    import android.app.ProgressDialog;
+    import android.content.DialogInterface;
+    import android.content.Intent;
+    import android.content.SharedPreferences;
+    import android.content.pm.PackageManager;
+    import android.net.Uri;
+    import android.os.Build;
+    import android.os.Bundle;
+    import android.os.Environment;
+    import android.provider.MediaStore;
+    import android.support.annotation.NonNull;
+    import android.support.annotation.RequiresApi;
+    import android.support.v4.app.ActivityCompat;
+    import android.support.v4.content.ContextCompat;
+    import android.support.v4.content.FileProvider;
+    import android.support.v7.app.AlertDialog;
+    import android.support.v7.app.AppCompatActivity;
+    import android.support.v7.widget.Toolbar;
+    import android.util.Log;
+    import android.view.MenuItem;
+    import android.view.View;
+    import android.widget.EditText;
+    import android.widget.ImageButton;
+    import android.widget.ListView;
+    import android.widget.TextView;
+    import android.widget.Toast;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+    import com.bumptech.glide.Glide;
+    import com.google.android.gms.tasks.OnCompleteListener;
+    import com.google.android.gms.tasks.OnFailureListener;
+    import com.google.android.gms.tasks.OnSuccessListener;
+    import com.google.android.gms.tasks.Task;
+    import com.google.firebase.firestore.DocumentSnapshot;
+    import com.google.firebase.firestore.EventListener;
+    import com.google.firebase.firestore.FirebaseFirestore;
+    import com.google.firebase.firestore.FirebaseFirestoreException;
+    import com.google.firebase.firestore.QuerySnapshot;
+    import com.google.firebase.storage.FirebaseStorage;
+    import com.google.firebase.storage.StorageReference;
+    import com.google.firebase.storage.UploadTask;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import dev.uit.grablove.Constants;
-import dev.uit.grablove.Model.ChatListAdapter;
-import dev.uit.grablove.Model.Message;
-import dev.uit.grablove.Model.UserType;
-import dev.uit.grablove.R;
-import android.support.v7.widget.Toolbar;
+    import java.io.File;
+    import java.text.SimpleDateFormat;
+    import java.util.ArrayList;
+    import java.util.Date;
+    import java.util.HashMap;
+    import java.util.List;
+    import java.util.Map;
+    import java.util.UUID;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
+    import de.hdodenhof.circleimageview.CircleImageView;
+    import dev.uit.grablove.Activity.BirthdayActivity;
+    import dev.uit.grablove.Activity.SexActivity;
+    import dev.uit.grablove.Constants;
+    import dev.uit.grablove.MainActivity;
+    import dev.uit.grablove.Model.ChatListAdapter;
+    import dev.uit.grablove.Model.Message;
+    import dev.uit.grablove.Model.UserType;
+    import dev.uit.grablove.R;
 
     public class fragment_tab3_chat_communicate extends AppCompatActivity {
         private Toolbar toolbar;
@@ -67,6 +78,22 @@ import com.google.firebase.firestore.QuerySnapshot;
 
         private FirebaseFirestore db;
         private SharedPreferences pre;
+        private FirebaseStorage storage;
+        private StorageReference storageRef;
+
+        private ProgressDialog mProgressDialog;
+
+        private Uri mImageUri = Uri.EMPTY;
+
+        private static final int GALLERY_INTENT = 2;
+        private String pictureImagePath = "";
+        private String[] permissions= new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,};
+
+        final CharSequence[] options = {"Camera", "Gallery"};
+
+        public static final int READ_EXTERNAL_STORAGE = 0,MULTIPLE_PERMISSIONS = 10;
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @SuppressLint("WrongViewCast")
@@ -96,6 +123,164 @@ import com.google.firebase.firestore.QuerySnapshot;
                     edtMessage.getText().clear();
                 }
             });
+
+            btnSendImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(fragment_tab3_chat_communicate.this);
+                    builder.setTitle("Choose Source ");
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
+                            if (options[item].equals("Camera")) {
+                                if (checkPermissions()) {
+                                    callCamera();
+                                }
+                            }
+                            if(options[item].equals("Gallery"))
+                            {
+                                if (ContextCompat.checkSelfPermission(fragment_tab3_chat_communicate.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                                {
+                                    ActivityCompat.requestPermissions(fragment_tab3_chat_communicate.this,
+                                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE);
+                                }
+                                else
+                                {
+                                    callgalary();
+                                }
+                            }
+                        }
+                    });
+                    builder.show();
+                }
+            });
+        }
+
+        private void callCamera() {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = timeStamp + ".jpg";
+            File storageDir = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            Log.d("LOGGED", "imageFileName :  "+ imageFileName);
+            pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+
+            Uri outputFileUri;
+
+            File file = new File(pictureImagePath);
+
+            if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT))
+                outputFileUri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getApplicationContext().getPackageName() + ".provider", file);
+            else
+                outputFileUri = Uri.fromFile(file);
+
+
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+            cameraIntent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+            cameraIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+
+            Log.d("LOGGED", "pictureImagePath :  "+ pictureImagePath);
+            Log.d("LOGGED", "outputFileUri :  "+ outputFileUri);
+
+            startActivityForResult(cameraIntent, 5);
+        }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+
+                mImageUri = data.getData();
+                Log.d("LOGGED", "ImageURI : " +mImageUri);
+
+
+                mProgressDialog.setMessage("Uploading...");
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+
+                if (mImageUri != null){
+                    StorageReference ref = storageRef.child("imageConversation/" + UUID.randomUUID().toString());
+                    ref.putFile(mImageUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                                    sendImageToDB(downloadUri.toString());
+                                    mProgressDialog.dismiss();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    mProgressDialog.dismiss();
+                                    //Toast.makeText(getBaseContext(), "")
+                                }
+                            });
+                }
+            }
+
+            else if (requestCode == 5 && resultCode == RESULT_OK ) {
+
+
+
+                File imgFile = new  File(pictureImagePath);
+                if(imgFile.exists()) {
+                    Log.d("LOGGED", "imgFile : " + imgFile);
+
+                    Uri fileUri =Uri.fromFile(imgFile);
+                    Log.d("LOGGED", "fileUri : " + fileUri);
+
+                    mProgressDialog.setMessage("Uploading...");
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.show();
+
+                    StorageReference ref = storageRef.child("imageConversation/" + UUID.randomUUID().toString());
+                    ref.putFile(fileUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                                    sendImageToDB(downloadUri.toString());
+                                    mProgressDialog.dismiss();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    mProgressDialog.dismiss();
+                                    //Toast.makeText(getBaseContext(), "")
+                                }
+                            });
+                }
+            }
+
+            else if (requestCode == 5)
+            {
+                Toast.makeText(this, "resultCode : "+ resultCode, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private void callgalary() {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, GALLERY_INTENT);
+        }
+
+        private  boolean checkPermissions() {
+            int result;
+            List<String> listPermissionsNeeded = new ArrayList<>();
+            for (String p:permissions) {
+                result = ContextCompat.checkSelfPermission(getApplicationContext(),p);
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    listPermissionsNeeded.add(p);
+                }
+            }
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),MULTIPLE_PERMISSIONS );
+                return false;
+            }
+            return true;
         }
 
         private void getFromDB() {
@@ -152,6 +337,9 @@ import com.google.firebase.firestore.QuerySnapshot;
         }
 
         private void map() {
+            storage = FirebaseStorage.getInstance();
+            storageRef = storage.getReference();
+
             toolbar = (Toolbar) findViewById(R.id.toolbarTab3);
             chatMessage = new ArrayList<>();
             listMessage = (ListView) findViewById(R.id.listviewMessTab3);
@@ -160,6 +348,7 @@ import com.google.firebase.firestore.QuerySnapshot;
             btnSendImg = (ImageButton) findViewById(R.id.btnSendImg);
             avatar = (CircleImageView) findViewById(R.id.ivAvatarTab3Chat);
             username = (TextView) findViewById(R.id.tvNameUserTab3Chat);
+            mProgressDialog = new ProgressDialog(this);
 
             listAdapter = new ChatListAdapter(chatMessage, this);
             listMessage.setAdapter(listAdapter);
@@ -193,6 +382,45 @@ import com.google.firebase.firestore.QuerySnapshot;
         private void sendToDB(final String msg) {
             final Map<String, Object> data = new HashMap<>();
             data.put(Constants.CHAT_MESS, msg);
+            data.put(Constants.CHAT_FROM, pre.getString(Constants.USER_KEY, ""));
+            data.put(Constants.CHAT_TIME, new Date().getTime());
+
+            db.collection("Users/" + pre.getString(Constants.USER_KEY, "") + "/friends")
+                    .whereEqualTo(Constants.DB_FRIEND_KEY, FriendId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (!task.getResult().isEmpty()) {
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    db.collection("Users/" + pre.getString(Constants.USER_KEY, "") + "/friends/"
+                                            + document.getId() + "/chat")
+                                            .add(data);
+                                }
+                            }
+                        }
+                    });
+
+            db.collection("Users/" + FriendId + "/friends")
+                    .whereEqualTo(Constants.DB_FRIEND_KEY, pre.getString(Constants.USER_KEY, ""))
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (!task.getResult().isEmpty()) {
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    db.collection("Users/" + FriendId + "/friends/"
+                                            + document.getId() + "/chat")
+                                            .add(data);
+                                }
+                            }
+                        }
+                    });
+        }
+
+        private void sendImageToDB(final String img) {
+            final Map<String, Object> data = new HashMap<>();
+            data.put(Constants.CHAT_MESS, img);
             data.put(Constants.CHAT_FROM, pre.getString(Constants.USER_KEY, ""));
             data.put(Constants.CHAT_TIME, new Date().getTime());
 

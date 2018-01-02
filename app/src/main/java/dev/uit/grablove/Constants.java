@@ -14,6 +14,7 @@ public class Constants {
     public   static  final  String IS_LOG_IN = "islogin";
     public   static  final  String LONG_lOCATION = "long_location";
     public   static  final  String LAT_LOCATION = "lat_location";
+    public   static  final  String USER_DESCRIPTION = "description";
 
     //DB Fields
 
@@ -28,6 +29,7 @@ public class Constants {
     public   static  final  String DB_USER_LIKED_ID = "user_liked";
     public   static  final  String DB_USER_UNLIKED_ID = "user_unliked";
     public   static  final  String DB_FRIEND_KEY = "friend-key";
+    public   static  final  String DB_USER_DESCRIPTION = "description";
 
     //Chat DB Fields
     public   static  final  String CHAT_FROM = "from";

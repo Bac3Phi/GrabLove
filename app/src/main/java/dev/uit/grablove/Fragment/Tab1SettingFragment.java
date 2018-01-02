@@ -11,10 +11,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import at.markushi.ui.CircleButton;
 import de.hdodenhof.circleimageview.CircleImageView;
 import dev.uit.grablove.Constants;
+import dev.uit.grablove.Model.Message;
+import dev.uit.grablove.Model.UserType;
 import dev.uit.grablove.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -26,6 +34,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class Tab1SettingFragment extends Fragment {
     private CircleImageView imAvatar;
     private TextView tvName;
+
+    private FirebaseFirestore db;
 
     private SharedPreferences pre;
 
@@ -40,8 +50,20 @@ public class Tab1SettingFragment extends Fragment {
                 imAvatar = (CircleImageView) rootView.findViewById(R.id.circleivTab1);
                 tvName = (TextView) rootView.findViewById(R.id.txtNameTab1);
 
-                Glide.with(getContext()).load(pre.getString(Constants.USER_AVATAR,"")).into(imAvatar);
-                tvName.setText(pre.getString(Constants.USER_NAME,""));
+                db = FirebaseFirestore.getInstance();
+                db.collection("Users/").document(pre.getString(Constants.USER_KEY, ""))
+                       .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                           @Override
+                           public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
+                               Glide.with(getContext()).load(documentSnapshot.getString(Constants.DB_USER_AVATAR))
+                                       .apply(new RequestOptions()
+                                                .dontTransform()
+                                                .dontAnimate()
+                                                .placeholder(R.drawable.loading))
+                                       .into(imAvatar);
+                               tvName.setText(documentSnapshot.getString(Constants.DB_USER_FULL_NAME));
+                           }
+                       });
 
                 CircleButton btnSettingFilter = (CircleButton) rootView.findViewById(R.id.btnFilterSettingTab1);
                 btnSettingFilter.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +79,20 @@ public class Tab1SettingFragment extends Fragment {
                     public void onClick(View v) {
                         Intent test = new Intent(Tab1SettingFragment.this.getActivity(),fragment_tab1_setting_profile.class);
                         startActivity(test);
+                    }
+                });
+
+                imAvatar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(),FragmentTab2Profile.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Avatar",pre.getString(Constants.USER_AVATAR,""));
+                        bundle.putString("Name",pre.getString(Constants.USER_NAME,""));
+                        bundle.putInt("Age",pre.getInt(Constants.USER_AGE,0));
+                        bundle.putString("Description", pre.getString(Constants.USER_DESCRIPTION, "Chưa có mô tả về bản thân"));
+                        intent.putExtra("Clicked",bundle);
+                        startActivity(intent);
                     }
                 });
                 return rootView;

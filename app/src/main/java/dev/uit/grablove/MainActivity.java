@@ -4,7 +4,9 @@ import android.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,12 +22,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -111,8 +117,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         tabLayout.getTabAt(0).setIcon(R.drawable.icon_pen_selecotor);
         tabLayout.getTabAt(1).setIcon(R.drawable.icon_tele_selector);
         tabLayout.getTabAt(2).setIcon(R.drawable.icon_chat_selector);
-
-
     }
 
     private void updateLocation() {

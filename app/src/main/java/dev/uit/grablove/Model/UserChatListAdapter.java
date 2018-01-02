@@ -69,7 +69,11 @@ public class UserChatListAdapter extends BaseAdapter{
 
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
-                holder.recentchat.setText(userChatList.getRecentChat());
+                if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
+                    holder.recentchat.setText("Hình ảnh");
+                }
+                else
+                    holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
                 /*if (userChatList.isNewMess()) {
                     holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
@@ -93,7 +97,11 @@ public class UserChatListAdapter extends BaseAdapter{
 
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
-                holder.recentchat.setText(userChatList.getRecentChat());
+                if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
+                    holder.recentchat.setText("Hình ảnh");
+                }
+                else
+                    holder.recentchat.setText(userChatList.getRecentChat());
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
                 /*if (userChatList.isNewMess()) {
                     holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
