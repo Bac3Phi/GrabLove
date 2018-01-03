@@ -65,15 +65,18 @@ public class UserChatListAdapter extends BaseAdapter{
 
                 if (userChatList.getRecentChat() == null){
                     holder.recentchat.setVisibility(View.GONE);
-                }else holder.recentchat.setVisibility(View.VISIBLE);
+                }else{
+                    holder.recentchat.setVisibility(View.VISIBLE);
+                    if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
+                        holder.recentchat.setText("Hình ảnh");
+                    }
+                    else
+                        holder.recentchat.setText(userChatList.getRecentChat());
+                }
 
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
-                if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
-                    holder.recentchat.setText("Hình ảnh");
-                }
-                else
-                    holder.recentchat.setText(userChatList.getRecentChat());
+
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
                 /*if (userChatList.isNewMess()) {
                     holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
@@ -93,15 +96,18 @@ public class UserChatListAdapter extends BaseAdapter{
 
                 if (userChatList.getRecentChat() == null){
                     holder.recentchat.setVisibility(View.GONE);
-                }else holder.recentchat.setVisibility(View.VISIBLE);
+                }else{
+                    holder.recentchat.setVisibility(View.VISIBLE);
+                    if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
+                        holder.recentchat.setText("Hình ảnh");
+                    }
+                    else
+                        holder.recentchat.setText(userChatList.getRecentChat());
+                }
 
                 Glide.with(v.getContext()).load(userChatList.getAvatar()).into(holder.avatar);
                 holder.username.setText(userChatList.getRecentUser());
-                if (userChatList.getRecentChat().startsWith("https://firebasestorage.googleapis.com/")){
-                    holder.recentchat.setText("Hình ảnh");
-                }
-                else
-                    holder.recentchat.setText(userChatList.getRecentChat());
+
                 holder.time.setText(SIMPLE_DATE_FORMAT.format(userChatList.getTime()));
                 /*if (userChatList.isNewMess()) {
                     holder.recentchat.setTypeface(Typeface.DEFAULT_BOLD);
