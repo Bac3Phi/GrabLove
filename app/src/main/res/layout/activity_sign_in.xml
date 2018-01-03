@@ -74,6 +74,7 @@
 
     </LinearLayout>
     <Button
+        android:background="@color/BlueCustom"
         android:id="@+id/btnSignInSignIn"
         android:text="Sign In"
         android:textColor="@android:color/white"

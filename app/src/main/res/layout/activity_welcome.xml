@@ -65,6 +65,7 @@
         android:weightSum="2">
 
         <Button
+            android:background="@color/btnSignUp"
             android:id="@+id/btnSignUpWelcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,6 +75,7 @@
             android:textColor="@android:color/white" />
 
         <Button
+            android:background="@color/BlueCustom"
             android:id="@+id/btnSignInWelcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

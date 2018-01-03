@@ -55,6 +55,7 @@
         app:cb_pressedRingWidth="5dp" />
 
     <Button
+        android:background="@color/BlueCustom"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/btnFinishAvatar"

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ public class AvatarActivity extends AppCompatActivity {
     private String strSex;
     private int iAge;
 
-    private FButton btnFinish;
+    private Button btnFinish;
     private ImageButton btnBack;
     private FirebaseStorage storage;
     private StorageReference storageRef;
@@ -61,7 +62,7 @@ public class AvatarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_avatar);
         CircleButton btnAdd = (CircleButton)findViewById(R.id.btnAddAvatar);
         ivAvatar = (ImageView) findViewById(R.id.ivAvatar);
-        btnFinish = (FButton) findViewById(R.id.btnFinishAvatar);
+        btnFinish = (Button) findViewById(R.id.btnFinishAvatar);
         btnBack = (ImageButton) findViewById(R.id.btnBackAvatar);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();

@@ -90,6 +90,7 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
         <Button
+            android:background="@color/BlueCustom"
             android:id="@+id/btnNextBirthday"
             android:text="@string/next"
             android:layout_marginLeft="20dp"

@@ -27,7 +27,7 @@ import info.hoang8f.widget.FButton;
 
 public class BirthdayActivity extends AppCompatActivity {
     private MaterialEditText etDob;
-    private FButton btnNext;
+    private Button btnNext;
     private TextView tvDob;
     private Calendar calendarDob;
     private int day, month,year, currentYear;
@@ -55,7 +55,7 @@ public class BirthdayActivity extends AppCompatActivity {
         tvDob.setText(day+"/"+month+"/"+year);
 
 
-        btnNext = (FButton) findViewById(R.id.btnNextBirthday);
+        btnNext = (Button) findViewById(R.id.btnNextBirthday);
 
         btnCalendarDob.setOnClickListener(new View.OnClickListener() {
             @Override
