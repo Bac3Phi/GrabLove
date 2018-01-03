@@ -96,10 +96,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         /*Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();*/
 
         double latitude = 0, longitude = 0;
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
+       /* latitude = location.getLatitude();
+        longitude = location.getLongitude();*/
 
-
+        if (location ==null)
+        {
+            latitude= 106.6636966666667;
+            longitude =10.91495333333333;
+        }
+        else
+        {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+        }
         pre = getSharedPreferences(Constants.REF_NAME, MODE_PRIVATE);
         pre.edit().putString(Constants.LAT_LOCATION, String.valueOf(latitude)).commit();
         pre.edit().putString(Constants.LONG_lOCATION, String.valueOf(longitude)).commit();
