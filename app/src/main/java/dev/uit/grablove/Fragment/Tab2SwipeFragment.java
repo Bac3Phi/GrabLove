@@ -200,7 +200,8 @@ public class Tab2SwipeFragment extends Fragment  {
 
             if (distance > pre.getInt(Constants.SETTING_MAX_DISTANCE,0)
                     && (user.getAge() < pre.getInt(Constants.SETTING_AGE_MIN,0)
-                    || user.getAge() > pre.getInt(Constants.SETTING_AGE_MAX,0))){
+                    || user.getAge() > pre.getInt(Constants.SETTING_AGE_MAX,0))
+                    || user.getUserKey().matches(pre.getString(Constants.USER_KEY, ""))){
                 userList.remove(user);
                 i--;
             }
@@ -306,7 +307,7 @@ public class Tab2SwipeFragment extends Fragment  {
                 bundle.putString("Description",adapter.getItem(cardStackView.getTopIndex()).getDescription());
                 intent.putExtra("Clicked",bundle);
                 startActivity(intent);
-                Toast.makeText(getContext(), adapter.getItem(cardStackView.getTopIndex()).getFullname(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), adapter.getItem(cardStackView.getTopIndex()).getFullname(), Toast.LENGTH_SHORT).show();
 
 
                 Log.d("CardStackView", "onCardClicked: " + index);

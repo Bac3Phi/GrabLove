@@ -73,6 +73,8 @@ public class FragmentTab2Profile extends AppCompatActivity {
         String temp = bundle.getString("Avatar");
         ImageView iv =new ImageView(this);
         Glide.with(this).load(temp)
+                .apply(new RequestOptions()
+                        .override(500,350))
                 .into(new SimpleTarget<Drawable>() {
             @Override
             public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
